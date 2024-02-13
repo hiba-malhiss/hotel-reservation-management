@@ -41,6 +41,9 @@ export class FlexboxComponent implements OnChanges, OnInit {
   public fullHeight = false;
 
   @Input()
+  public fullWidth = false;
+
+  @Input()
   public equalHeight = false;
 
   @Input()
@@ -64,6 +67,7 @@ export class FlexboxComponent implements OnChanges, OnInit {
       [`Flexbox--${this.justify}Justify`]: true,
       [`Flexbox--${this.spacing}Spacing`]: true,
       'Flexbox--fullHeight': this.equalHeight || this.fullHeight,
+      'Flexbox--fullWidth': this.fullWidth,
       'Flexbox--wrap': this.wrap
     };
   }

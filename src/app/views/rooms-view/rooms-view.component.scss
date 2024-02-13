@@ -10,12 +10,13 @@
     height: max-content;
   }
 
-  &-pager, &-loader {
+  &-loader, &-notFoundMsg {
     justify-self: center;
     grid-column: 1/-1;
+    padding-top: 40px;
   }
 
-  &-loader {
-    padding-top: 40px;
+  &-pager {
+    margin-top: auto;
   }
 }

@@ -63,10 +63,14 @@ $layout-spacing: (
     }
   }
 
-  // fullHeight attribute
+  // fullHeight, fullWidth attribute
 
   &.Flexbox--fullHeight {
     height: 100%;
+  }
+
+  &.Flexbox--fullWidth {
+    width: 100%;
   }
 
   // Wrap attribute

@@ -208,4 +208,19 @@ export const roomsMockData = {
       "guestName": "Jane Smith"
     }
   ]
+};
+
+export const roomsFilterMetaMockData = {
+  roomTypes: ['Standard', 'Deluxe'],
+  amenities: [
+    "Wifi",
+    "Kitchen",
+    "Mini Bar",
+    "Air Conditioning",
+    "Heating",
+    "Free Wi-Fi",
+    "TV",
+    "Hair dryer",
+    "Iron"
+  ]
 }

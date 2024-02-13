@@ -1,0 +1,33 @@
+<div [formGroup]="filterForm"  class="RoomFiltersSidebar">
+  <span class="RoomFiltersSidebar-header">Sort by:</span>
+  <hrm-flexbox direction="vertical" spacing="xsmall" class="RoomFiltersSidebar-content">
+    <hrm-flexbox align="center" spacing="xsmall" *ngFor="let option of sortByOptions">
+      <p-radioButton [inputId]="option.key+option.direction"
+                     [value]="option"
+                     formControlName="sortBy">
+      </p-radioButton>
+      <label [for]="option.key+option.direction">{{option.title}}</label>
+    </hrm-flexbox>
+  </hrm-flexbox>
+  <p-divider></p-divider>
+
+  <div class="RoomFiltersSidebar-header">
+    Filter by:
+    <i class="pi pi-spin pi-spinner" *ngIf="isLoadingFilters"></i>
+  </div>
+
+  <ng-container *ngFor="let option of filterByOptions">
+    <div class="RoomFiltersSidebar-subHeader">{{option.title}}</div>
+    <hrm-flexbox direction="vertical" spacing="xsmall" class="RoomFiltersSidebar-content">
+      <hrm-flexbox align="center" spacing="xsmall" *ngFor="let value of option.values">
+        <p-checkbox [name]="option.key"
+                    [inputId]="value"
+                    [value]="value"
+                    [formControl]="getCheckboxControl(option.key)"
+                    >
+        </p-checkbox>
+        <label [for]="value">{{value}}</label>
+      </hrm-flexbox>
+    </hrm-flexbox>
+  </ng-container>
+</div>

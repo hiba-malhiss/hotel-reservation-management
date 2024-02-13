@@ -1,13 +1,20 @@
 <hrm-flexbox class="RoomView" spacing="medium">
-  <div class="RoomView-content">
-    <p-progressSpinner *ngIf="isLoadingRooms" class="RoomView-loader"></p-progressSpinner>
-    <ng-container *ngIf="!isLoadingRooms">
-      <hrm-room-card *ngFor="let room of rooms" [room]="room"></hrm-room-card>
-      <p-paginator class="RoomView-pager"
-                   [rows]="rowsPerPage"
-                   [totalRecords]="totalRooms"
-                   (onPageChange)="onPaginationChange($event)">
-      </p-paginator>
-    </ng-container>
-  </div>
+  <hrm-room-filters-sidebar (onFilterOrSortChange)="filters.next($event)">
+  </hrm-room-filters-sidebar>
+
+  <hrm-flexbox direction="vertical" spacing="small" style="width: 100%" [fullHeight]="true" [fullWidth]="true">
+    <div class="RoomView-content">
+      <p-progressSpinner *ngIf="isLoadingRooms" class="RoomView-loader"></p-progressSpinner>
+      <div *ngIf="!isLoadingRooms && !rooms.length" class="RoomView-notFoundMsg">No Rooms found</div>
+      <ng-container *ngIf="!isLoadingRooms">
+        <hrm-room-card *ngFor="let room of rooms" [room]="room"></hrm-room-card>
+      </ng-container>
+    </div>
+    <p-paginator *ngIf="rooms.length"
+                 class="RoomView-pager"
+                 [rows]="rowsPerPage"
+                 [totalRecords]="totalRooms"
+                 (onPageChange)="onPaginationChange($event)">
+    </p-paginator>
+  </hrm-flexbox>
 </hrm-flexbox>

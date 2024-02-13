@@ -1,0 +1,31 @@
+@import "../../../../ui-kit/styling/constants";
+$container-padding: $hrm-spacing-24px;
+
+.RoomFiltersSidebar {
+  border: 1px solid $hrm-border-color;
+  border-radius: 6px;
+  width: 250px;
+  padding-bottom: $container-padding;
+
+  &-header {
+    font-size: 22px;
+    font-weight: 700;
+    padding: $hrm-spacing-18px;
+    display: inline-block;
+  }
+
+  &-subHeader {
+    padding: $hrm-spacing-16px $container-padding;
+    font-size: 18px;
+    font-weight: 700;
+
+    &:first-of-type {
+      padding-top: 0;
+    }
+  }
+
+  &-content {
+    display: block;
+    padding: 0 $container-padding;
+  }
+}
