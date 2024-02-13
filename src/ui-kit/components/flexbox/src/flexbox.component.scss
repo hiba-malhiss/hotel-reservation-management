@@ -1,0 +1,97 @@
+$layout-spacing: (
+  'large': 32px,
+  'medium': 24px,
+  'small': 16px,
+  'xlarge': 40px,
+  'xsmall': 8px,
+  'xxlarge': 64px,
+  'xxsmall': 4px
+);
+
+.Flexbox {
+  display: flex;
+  // Align attribute
+
+  &.Flexbox--centerAlign {
+    align-items: center;
+  }
+
+  &.Flexbox--endAlign {
+    align-items: flex-end;
+  }
+
+  &.Flexbox--baselineAlign {
+    align-items: baseline;
+  }
+
+  &.Flexbox--normalAlign {
+    align-items: normal;
+  }
+
+  &.Flexbox--startAlign {
+    align-items: flex-start;
+  }
+
+  // Direction attribute
+
+  &--horizontalDirection {
+    flex-direction: row;
+  }
+
+  &--verticalDirection {
+    flex-direction: column;
+  }
+
+  // Justify attribute
+
+  &.Flexbox--betweenJustify {
+    justify-content: space-between;
+  }
+
+  &.Flexbox--centerJustify {
+    justify-content: center;
+  }
+
+  &.Flexbox--endJustify {
+    justify-content: flex-end;
+  }
+
+  &.Flexbox--equalJustify {
+    > * {
+      flex-basis: 0;
+      flex-grow: 1;
+    }
+  }
+
+  // fullHeight attribute
+
+  &.Flexbox--fullHeight {
+    height: 100%;
+  }
+
+  // Wrap attribute
+
+  &.Flexbox--wrap {
+    flex-wrap: wrap;
+  }
+
+  // Spacing attribute
+
+  @each $size, $value in $layout-spacing {
+    &.Flexbox--horizontalDirection {
+      &.Flexbox--#{$size}Spacing {
+        > *:not(:first-child) {
+          margin-left: $value;
+        }
+      }
+    }
+
+    &.Flexbox--verticalDirection {
+      &.Flexbox--#{$size}Spacing {
+        > *:not(:first-child) {
+          margin-top: $value;
+        }
+      }
+    }
+  }
+}
