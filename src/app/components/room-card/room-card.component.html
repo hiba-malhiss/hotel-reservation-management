@@ -1,0 +1,12 @@
+<p-card (click)="navigateToRoomDetails()"
+        [header]="'Room ' + room.roomNumber"
+        [subheader]="room.type"
+        class="RoomCard"
+>
+  <ng-template pTemplate="header">
+    <img [src]="room?.image" alt="room" class="RoomCard-img">
+  </ng-template>
+  <ng-template pTemplate="footer">
+    <span class="RoomCard-price">${{room.price}}</span> night
+  </ng-template>
+</p-card>

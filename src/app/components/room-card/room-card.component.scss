@@ -1,0 +1,16 @@
+.RoomCard {
+  max-width: 350px;
+  cursor: pointer;
+
+  ::ng-deep .p-card-content {
+    padding: 0 !important;
+  }
+
+  &-img {
+    border-radius: 6px 6px 0 0;
+  }
+
+  &-price {
+    font-weight: bold;
+  }
+}
