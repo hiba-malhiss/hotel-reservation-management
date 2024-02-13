@@ -1,0 +1,22 @@
+<hrm-flexbox spacing="small" class="AppBar">
+  <img src="assets/images/logo.svg" alt="Logo" class="AppBar-logo">
+
+  <ng-container *ngFor="let item of items">
+    <button
+          *ngIf="!(item.shouldHide && item.shouldHide())"
+          pButton type="button"
+          [icon]="item.icon || ''"
+          [label]="item.label"
+          (click)="item.onClick()"
+          [ngClass]="[item.class ||'', 'p-button-secondary', 'p-button-text']"></button>
+  </ng-container>
+
+  <ng-container *ngIf="isLoggedIn">
+    <button pButton type="button"
+            (click)="menu.toggle($event)"
+            icon="pi pi-user"
+            label="John Doe"
+            class="p-button-secondary p-button-text AppBar-rightBtn"></button>
+    <p-menu #menu [popup]="true" [model]="userMenuItems"></p-menu>
+  </ng-container>
+</hrm-flexbox>

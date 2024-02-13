@@ -1,0 +1,17 @@
+@import "../../../ui-kit/styling/constants";
+
+.AppBar {
+  padding: $hrm-spacing-24px;
+  display: block;
+  height: $app-bar-height;
+
+  &-rightBtn {
+    margin-left: auto !important;
+  }
+
+  &-logo {
+    width: 100px;
+    height: auto;
+  }
+}
+

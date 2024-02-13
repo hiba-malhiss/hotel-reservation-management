@@ -1,0 +1,28 @@
+@import "../../ui-kit/styling/constants";
+
+.HomeView {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 10%;
+  width: 100%;
+  height: calc(100vh - #{$app-bar-height});
+  background-image: $hrm-mask-color,
+  url(https://assets-global.website-files.com/64b34ca20ad51dbf0125ea07/64d73f036eaaac5cd38dda3b_cigar1.jpg);
+  background-position: 0 0, 50%;
+  background-size: auto, 2128px;
+  position: absolute;
+
+  &-heading {
+    font-size: 2.5rem;
+    color: white;
+  }
+
+  &-slogen {
+    padding-top: $hrm-spacing-4px;
+    padding-left: $hrm-spacing-4px;
+    font-size: 1rem;
+    color: white;
+    text-transform: uppercase;
+  }
+}
