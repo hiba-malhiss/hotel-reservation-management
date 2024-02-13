@@ -1,6 +1,9 @@
+@import "../../../ui-kit/styling/constants";
+
 .RoomView {
-  padding: 40px;
-  display: block;
+  padding: $page-content-padding;
+  min-height: $page-min-height;
+  display: flex;
 
   &-content {
     display: grid;
@@ -8,6 +11,7 @@
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     flex: 1;
     height: max-content;
+    padding-left: $hrm-spacing-24px;
   }
 
   &-loader, &-notFoundMsg {

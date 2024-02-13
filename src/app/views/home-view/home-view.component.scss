@@ -6,7 +6,7 @@
   flex-direction: column;
   padding: 10%;
   width: 100%;
-  height: calc(100vh - #{$app-bar-height});
+  height: $page-min-height;
   background-image: $hrm-mask-color,
   url(https://assets-global.website-files.com/64b34ca20ad51dbf0125ea07/64d73f036eaaac5cd38dda3b_cigar1.jpg);
   background-position: 0 0, 50%;
