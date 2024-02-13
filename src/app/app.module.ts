@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { HomeViewModule } from "./views/home-view/home-view.module";
 import { CssResetModule } from "../ui-kit/components/css-reset/src/css-reset.module";
 import { AppBarModule } from "./components/app-bar/app-bar.module";
+import { RoomsViewModule } from "./views/rooms-view/rooms-view.module";
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { AppBarModule } from "./components/app-bar/app-bar.module";
     AppRoutingModule,
     HomeViewModule,
     CssResetModule,
+    RoomsViewModule,
     AppBarModule
   ],
   providers: [],

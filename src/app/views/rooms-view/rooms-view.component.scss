@@ -1,0 +1,21 @@
+.RoomView {
+  padding: 40px;
+  display: block;
+
+  &-content {
+    display: grid;
+    grid-gap: 40px 24px;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    flex: 1;
+    height: max-content;
+  }
+
+  &-pager, &-loader {
+    justify-self: center;
+    grid-column: 1/-1;
+  }
+
+  &-loader {
+    padding-top: 40px;
+  }
+}

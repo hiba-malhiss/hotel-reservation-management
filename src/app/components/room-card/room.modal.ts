@@ -1,7 +1,7 @@
 export interface Room {
   id: number;
-  roomNumber: number;
-  type: 'Standard' | 'Deluxe';
+  roomNumber: number | string;
+  type: string;
   price: number;
   amenities: string[];
   image: string;

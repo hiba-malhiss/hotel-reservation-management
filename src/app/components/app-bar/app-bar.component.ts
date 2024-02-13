@@ -19,7 +19,7 @@ export class AppBarComponent implements OnInit {
   isLoggedIn: boolean = false;
 
   items: AppBarButton [] = [
-    { label: 'Rooms', onClick: () => this.router.navigateByUrl('/') },
+    { label: 'Rooms', onClick: () => this.router.navigateByUrl('/rooms') },
     { label: 'Attractions', onClick: () => this.router.navigateByUrl('/' )},
     { label: 'Login', onClick: this.login.bind(this), icon: 'pi pi-user', shouldHide: () => this.isLoggedIn, class: "AppBar-rightBtn" },
     { label: 'Register', onClick: this.register.bind(this), icon: 'pi pi-sign-out', shouldHide: () => this.isLoggedIn },
