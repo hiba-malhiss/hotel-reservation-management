@@ -22,7 +22,7 @@ export class AppBarComponent {
 
   items: AppBarButton [] = [
     { label: 'Rooms', onClick: () => this.router.navigateByUrl('/rooms') },
-    { label: 'Attractions', onClick: () => this.router.navigateByUrl('/') },
+    { label: 'Attractions', onClick: () => this.router.navigateByUrl('/attractions') },
     {
       label: 'Login',
       onClick: this.login.bind(this),

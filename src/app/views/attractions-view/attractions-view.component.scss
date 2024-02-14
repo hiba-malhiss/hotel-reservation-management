@@ -1,0 +1,7 @@
+@import "../../../ui-kit/styling/constants";
+
+:host {
+  display: block;
+  height: $page-min-height;
+  overflow: hidden;
+}
