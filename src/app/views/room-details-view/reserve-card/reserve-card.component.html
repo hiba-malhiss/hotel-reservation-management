@@ -4,7 +4,7 @@
     <span>Select check-in, check-out dates</span>
     <hrm-reserve-calendar [fullWidth]="true"></hrm-reserve-calendar>
     <button pButton label="Reserve"
-            (click)="onReserve()"
+            (click)="reserve.emit()"
             [disabled]="!reserveService.numberOfDays"
     ></button>
 

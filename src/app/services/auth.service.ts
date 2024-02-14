@@ -41,6 +41,10 @@ export class AuthService {
     });
   }
 
+  public isUserLoggedIn(): boolean {
+    return !!this.currentUser$.value;
+  }
+
   public login(email: string, password: string): Observable<User> {
     const users = localStorage.getItem(USERS_LIST_KEY);
     const list = users ? JSON.parse(users) : [];

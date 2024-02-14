@@ -71,3 +71,20 @@ function getRangeDatesArray(dateRanges: { startDate: string, endDate: string }[]
   }
   return dates;
 }
+
+export function checkIfValidReservation(reservation: Reservation): boolean {
+  const room = getHotelRoomsWithId(reservation.roomId);
+  if (room) {
+    const startDate = moment(reservation.startDate);
+    const endDate = moment(reservation.endDate);
+    const list = room.availableDates?.map(date => date.format('YYYY-MM-DD')) || [];
+    while (startDate.isSameOrBefore(endDate, 'day')) {
+      if(!list.includes(startDate.format('YYYY-MM-DD'))){
+        return false;
+      }
+      startDate.add(1, 'day');
+    }
+    return true;
+  }
+  return false;
+}

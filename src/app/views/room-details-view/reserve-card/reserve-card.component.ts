@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ReserveManagementService } from "../../../services/reserve-management.service";
 
 @Component({
@@ -7,6 +7,8 @@ import { ReserveManagementService } from "../../../services/reserve-management.s
   styleUrls: ['./reserve-card.component.scss']
 })
 export class ReserveCardComponent implements OnInit {
+  @Output()
+  public reserve = new EventEmitter();
 
   constructor(public reserveService: ReserveManagementService) {
   }
@@ -14,8 +16,5 @@ export class ReserveCardComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onReserve() {
-    console.log(this.reserveService.selectedReservationDate)
-  }
 
 }
