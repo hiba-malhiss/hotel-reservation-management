@@ -1,14 +1,13 @@
 import { Component, ElementRef, Input, OnChanges, ViewChild } from '@angular/core';
 // @ts-ignore
-import mapboxgl from 'mapbox-gl';
-
-const ACCESS_TOKEN = "'pk.eyJ1IjoiZHBpZXRyb2NhcmxvIiwiYSI6ImNram9tOGFuMTBvb3oyeXFsdW5uYmJjNGQifQ._zE6Mub0-Vpl7ggMj8xSUQ'";
+import * as mapboxgl from 'mapbox-gl';
 
 export interface MarkerOptions {
   lng: number;
   lat: number;
   color?: string;
-  info?: string;
+  popupInfo?: string;
+  element?: HTMLElement;
 }
 
 export interface MapConfig {
@@ -42,17 +41,17 @@ export class MapComponent implements OnChanges {
   }
 
   private setupMap(): void {
-    mapboxgl.accessToken = ACCESS_TOKEN;
+    mapboxgl.accessToken = 'pk.eyJ1IjoiZHBpZXRyb2NhcmxvIiwiYSI6ImNram9tOGFuMTBvb3oyeXFsdW5uYmJjNGQifQ._zE6Mub0-Vpl7ggMj8xSUQ';
     const map = new mapboxgl.Map({
       container: 'map', // container ID
       style: this.mapConfig?.style
         ? MapStyles[this.mapConfig.style]
-        : MapStyles['outdoors'],
+        : MapStyles['street'],
       center: [
         this.mapConfig?.centerLongitude ?? 12,
         this.mapConfig?.centerLatitude ?? 20
       ], // starting position [lng, lat]
-      zoom: this.mapConfig?.initialZoom ?? 9, // starting zoom
+      zoom: this.mapConfig?.initialZoom ?? 12, // starting zoom
       interactive: true
     });
 
@@ -60,16 +59,7 @@ export class MapComponent implements OnChanges {
     map.addControl(new mapboxgl.FullscreenControl());
 
     // Add markers
-    if (this.mapConfig?.markers) {
-      this.mapConfig.markers.forEach(marker => {
-        new mapboxgl.Marker({
-          color: marker.color ?? '#3FB1CE',
-          draggable: false
-        })
-        .setLngLat([marker.lng, marker.lat])
-        .addTo(map);
-      });
-    }
+    this.addMarkers(map)
 
     // Add a NavigationControl control contains zoom buttons and a compass.
     const nav = new mapboxgl.NavigationControl({
@@ -78,5 +68,36 @@ export class MapComponent implements OnChanges {
       visualizePitch: false
     });
     map.addControl(nav, 'bottom-right');
+  }
+
+  addMarkers(map: any) {
+    if (this.mapConfig?.markers) {
+      const popup = new mapboxgl.Popup({ offset: 25 });
+
+      this.mapConfig.markers.forEach(marker => {
+        let markerObj = new mapboxgl.Marker({
+          color: marker.color ?? '#3FB1CE',
+          element: marker.element,
+          draggable: false
+        })
+        .setLngLat([marker.lng, marker.lat])
+        .addTo(map);
+
+        if (marker.popupInfo) {
+          markerObj.getElement().addEventListener('mouseenter', () => {
+            popup.setLngLat([marker.lng, marker.lat])
+            .setHTML(
+              '<div class="Map-markerInfo">' + marker.popupInfo + '</div>' +
+              '<div class="Map-markerInfo">[' + marker.lng + ',' + marker.lat + ']</div>'
+            )
+            .addTo(map);
+          });
+
+          markerObj.getElement().addEventListener('mouseleave', () => {
+            popup.remove();
+          });
+        }
+      });
+    }
   }
 }
