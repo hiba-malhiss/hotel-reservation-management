@@ -32,7 +32,7 @@ const attractionsData = [
   {
     "id": 6,
     "name": "Bar",
-    "location": {"lat": 40.689247, "lng": -74.044502},
+    "location": {"lat": 40.689247, "lng": -74.054502},
     "connections": [4]
   }
 ]
