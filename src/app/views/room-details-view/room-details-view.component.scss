@@ -1,0 +1,45 @@
+@import "../../../ui-kit/styling/constants";
+
+.RoomDetailsView {
+  padding: 40px 5%;
+  display: block;
+
+  &-title {
+    font-size: 34px;
+    font-weight: bold;
+  }
+
+  &-img {
+    height: 445px;
+    border-radius: 6px;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+
+    div {
+      height: 100%;
+      width: 100%;
+      background-position: center;
+      background-size: cover;
+
+      &:first-child {
+        grid-row: span 2;
+      }
+    }
+  }
+
+  p-divider {
+    margin-top: 0 !important;
+  }
+
+  &-subHeader {
+    font-size: 20px;
+    font-weight: 700;
+    margin-top: $hrm-spacing-24px;
+
+    &:not(:first-child) {
+      margin-top: 0 !important;
+    }
+  }
+}

@@ -17,9 +17,8 @@ export class RoomCardComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  //todo
   navigateToRoomDetails() {
-    this.router.navigate(["/rooms"])
+    this.router.navigate(["/rooms", this.room.id])
   }
 
 }

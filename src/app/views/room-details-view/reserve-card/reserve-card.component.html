@@ -1,0 +1,19 @@
+<p-card class="ReserveCard">
+  <hrm-flexbox spacing="medium" direction="vertical">
+    <span class="ReserveCard-price">${{reserveService.selectedRoom?.price}} night</span>
+    <span>Select check-in, check-out dates</span>
+    <hrm-reserve-calendar [fullWidth]="true"></hrm-reserve-calendar>
+    <button pButton label="Reserve"
+            (click)="onReserve()"
+            [disabled]="!reserveService.numberOfDays"
+    ></button>
+
+    <div *ngIf="reserveService.numberOfDays" class="ReserveCard-details">
+      <span style="text-decoration: underline;">${{reserveService.selectedRoom?.price}} x {{reserveService.numberOfDays}} nights</span>
+      <span>${{reserveService.totalCost}}</span>
+      <p-divider></p-divider>
+      <b>Total Amount:</b>
+      <b>${{reserveService.totalCost}}</b>
+    </div>
+  </hrm-flexbox>
+</p-card>

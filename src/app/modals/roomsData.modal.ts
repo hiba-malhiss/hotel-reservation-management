@@ -19,3 +19,23 @@ export interface FilterAndSortPayload {
   type?: string[];
   amenities?: string[];
 }
+
+export interface Reservation {
+  id: number;
+  roomId: number;
+  startDate: string;
+  endDate: string;
+  guestName: string;
+}
+
+export const AmenitiesIconMapper: { [key: string]: string } = {
+  "Wifi": "pi pi-wifi",
+  "Kitchen": "pi pi-home",
+  "Mini Bar": "pi pi-hourglass",
+  "Air Conditioning": "pi pi-bolt\n",
+  "Heating": "pi pi-hourglass",
+  "Free Wi-Fi": "pi pi-wifi",
+  "TV": "pi pi-desktop",
+  "Hair dryer": "pi pi-user",
+  "Iron": "pi pi-circle"
+};

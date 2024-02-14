@@ -8,8 +8,8 @@ export const roomsMockData = {
       "price": 120,
       "amenities": ["Free Wi-Fi", "TV", "Air Conditioning", "Mini Bar"],
       "availability": [
-        { "startDate": "2023-12-05", "endDate": "2023-12-12" },
-        { "startDate": "2023-12-18", "endDate": "2023-12-25" }
+        { "startDate": "2024-12-05", "endDate": "2024-12-12" },
+        { "startDate": "2024-12-18", "endDate": "2024-12-25" }
       ]
     },
     {
@@ -20,8 +20,8 @@ export const roomsMockData = {
       "price": 150,
       "amenities": ["Free Wi-Fi", "TV", "Air Conditioning", "Mini Bar"],
       "availability": [
-        { "startDate": "2023-12-08", "endDate": "2023-12-15" },
-        { "startDate": "2023-12-20", "endDate": "2023-12-27" }
+        { "startDate": "2024-12-08", "endDate": "2024-12-15" },
+        { "startDate": "2024-12-20", "endDate": "2024-12-27" }
       ]
     },
     {
@@ -32,8 +32,8 @@ export const roomsMockData = {
       "price": 130,
       "amenities": ["Free Wi-Fi", "TV", "Air Conditioning", "Mini Bar"],
       "availability": [
-        { "startDate": "2023-12-10", "endDate": "2023-12-17" },
-        { "startDate": "2023-12-22", "endDate": "2023-12-29" }
+        { "startDate": "2024-12-10", "endDate": "2024-12-17" },
+        { "startDate": "2024-12-22", "endDate": "2024-12-29" }
       ]
     },
     {
@@ -44,8 +44,8 @@ export const roomsMockData = {
       "price": 200,
       "amenities": ["Free Wi-Fi", "TV", "Air Conditioning", "Mini Bar"],
       "availability": [
-        { "startDate": "2023-12-12", "endDate": "2023-12-19" },
-        { "startDate": "2023-12-24", "endDate": "2023-12-31" }
+        { "startDate": "2024-12-12", "endDate": "2024-12-19" },
+        { "startDate": "2024-12-24", "endDate": "2024-12-31" }
       ]
     },
     {
@@ -56,8 +56,8 @@ export const roomsMockData = {
       "price": 160,
       "amenities": ["Free Wi-Fi", "TV", "Air Conditioning", "Mini Bar"],
       "availability": [
-        { "startDate": "2023-12-15", "endDate": "2023-12-22" },
-        { "startDate": "2023-12-27", "endDate": "2023-12-31" }
+        { "startDate": "2024-12-15", "endDate": "2024-12-22" },
+        { "startDate": "2024-12-27", "endDate": "2024-12-31" }
       ]
     },
     {
@@ -68,8 +68,8 @@ export const roomsMockData = {
       "price": 140,
       "amenities": ["TV"],
       "availability": [
-        { "startDate": "2023-12-18", "endDate": "2023-12-25" },
-        { "startDate": "2023-12-20", "endDate": "2023-12-27" }
+        { "startDate": "2024-12-18", "endDate": "2024-12-25" },
+        { "startDate": "2024-12-20", "endDate": "2024-12-27" }
       ]
     },
     {
@@ -80,8 +80,8 @@ export const roomsMockData = {
       "price": 120,
       "amenities": ["TV", "Mini Bar"],
       "availability": [
-        { "startDate": "2023-12-21", "endDate": "2023-12-28" },
-        { "startDate": "2023-12-23", "endDate": "2023-12-30" }
+        { "startDate": "2024-12-21", "endDate": "2024-12-28" },
+        { "startDate": "2024-12-23", "endDate": "2024-12-30" }
       ]
     },
     {
@@ -92,8 +92,8 @@ export const roomsMockData = {
       "price": 170,
       "amenities": ["Free Wi-Fi", "Air Conditioning", "Mini Bar"],
       "availability": [
-        { "startDate": "2023-12-24", "endDate": "2023-12-31" },
-        { "startDate": "2023-12-26", "endDate": "2023-12-31" }
+        { "startDate": "2024-12-24", "endDate": "2024-12-31" },
+        { "startDate": "2024-12-26", "endDate": "2024-12-31" }
       ]
     },
     {
@@ -104,8 +104,8 @@ export const roomsMockData = {
       "price": 130,
       "amenities": ["Free Wi-Fi", "TV", "Air Conditioning", "Mini Bar"],
       "availability": [
-        { "startDate": "2023-12-27", "endDate": "2023-12-31" },
-        { "startDate": "2023-12-28", "endDate": "2023-12-31" }
+        { "startDate": "2024-12-27", "endDate": "2024-12-31" },
+        { "startDate": "2024-12-28", "endDate": "2024-12-31" }
       ]
     },
     {
@@ -116,8 +116,8 @@ export const roomsMockData = {
       "price": 220,
       "amenities": ["Free Wi-Fi", "TV", "Air Conditioning", "Mini Bar"],
       "availability": [
-        { "startDate": "2023-12-30", "endDate": "2023-12-31" },
-        { "startDate": "2023-12-31", "endDate": "2023-12-31" }
+        { "startDate": "2024-12-30", "endDate": "2024-12-31" },
+        { "startDate": "2024-12-31", "endDate": "2024-12-31" }
       ]
     },
     {
@@ -128,8 +128,8 @@ export const roomsMockData = {
       "price": 120,
       "amenities": ["Free Wi-Fi", "TV", "Air Conditioning", "Mini Bar"],
       "availability": [
-        { "startDate": "2023-12-31", "endDate": "2023-12-31" },
-        { "startDate": "2023-12-31", "endDate": "2023-12-31" }
+        { "startDate": "2024-12-31", "endDate": "2024-12-31" },
+        { "startDate": "2024-12-31", "endDate": "2024-12-31" }
       ]
     },
     {
@@ -196,15 +196,15 @@ export const roomsMockData = {
     {
       "id": 1,
       "roomId": 1,
-      "startDate": "2023-12-02",
-      "endDate": "2023-12-08",
+      "startDate": "2024-12-02",
+      "endDate": "2024-12-08",
       "guestName": "John Doe"
     },
     {
       "id": 2,
       "roomId": 2,
-      "startDate": "2023-12-10",
-      "endDate": "2023-12-15",
+      "startDate": "2024-12-10",
+      "endDate": "2024-12-15",
       "guestName": "Jane Smith"
     }
   ]
