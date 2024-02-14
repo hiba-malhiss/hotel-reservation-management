@@ -20,4 +20,5 @@
     <p-menu #menu [popup]="true" [model]="userMenuItems"></p-menu>
   </ng-container>
 </hrm-flexbox>
-<hrm-signup [isVisible]="authService.isSignUpVisible"></hrm-signup>
+<hrm-signup [isVisible]="!!(authService.isSignUpVisible$ | async)"></hrm-signup>
+<hrm-login [isVisible]="!!(authService.isLoginVisible$ | async)"></hrm-login>

@@ -25,15 +25,19 @@ export class SignupComponent {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
+
+    this.authService.isSignUpVisible$.subscribe(val => {
+      this.isVisible = val;
+    })
   }
 
   getControl(filedName: string) {
     return this.signupForm?.get(filedName) as FormControl;
   }
 
-  hideSignUpDialog(){
+  hideSignUpDialog() {
     this.isVisible = false;
-    this.authService.isSignUpVisible = true;
+    this.authService.isSignUpVisible$.next(false);
   }
 
   onSubmit() {
@@ -50,5 +54,10 @@ export class SignupComponent {
         this.hideSignUpDialog();
       })
     }
+  }
+
+  onLogin() {
+    this.hideSignUpDialog();
+    this.authService.isLoginVisible$.next(true);
   }
 }

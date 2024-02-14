@@ -17,7 +17,8 @@ const USERS_LIST_KEY = "registeredUsersList";
   providedIn: 'root'
 })
 export class AuthService {
-  isSignUpVisible = false;
+  isSignUpVisible$ = new BehaviorSubject(false);
+  isLoginVisible$ = new BehaviorSubject(false);
 
   constructor() {
   }
@@ -45,7 +46,8 @@ export class AuthService {
     const list = users ? JSON.parse(users) : [];
     return new Observable(observer => {
       const user = list.find((u: User) => u.email === email);
-      if (user && bcrypt.compareSync(password, user.passwordHash)) {
+      if (user && bcrypt.compareSync(password, user.password)) {
+        console.log(list, user)
         this.currentUser$.next(user);
         localStorage.setItem(USER_KEY, JSON.stringify(user));
         observer.next(user);
@@ -65,7 +67,7 @@ export class AuthService {
     name: string,
     email: string,
     password: string): Observable<User> {
-    const passwordHash = bcrypt.hash(password, 10);
+    const passwordHash = bcrypt.hashSync(password, 10);
     const user: User = {
       name: capitalizeFirstLetter(name),
       email,

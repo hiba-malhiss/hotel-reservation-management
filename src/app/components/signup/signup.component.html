@@ -38,6 +38,7 @@
         />
       </hrm-field-wrapper>
       <button (click)="onSubmit()" pButton [disabled]="!signupForm.valid">Sign Up</button>
+      <div>Or log in: <span class="Signup-login" (click)="onLogin()">here</span></div>
     </div>
   </ng-template>
 </p-dialog>

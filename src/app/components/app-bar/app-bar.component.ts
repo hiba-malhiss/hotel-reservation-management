@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { Router } from "@angular/router";
 import { AuthService, User } from "../../services/auth.service";
@@ -16,7 +16,7 @@ interface AppBarButton {
   templateUrl: './app-bar.component.html',
   styleUrls: ['./app-bar.component.scss']
 })
-export class AppBarComponent implements OnInit {
+export class AppBarComponent {
   isLoggedIn: boolean = false;
   currentUser: User | null = null;
 
@@ -35,9 +35,10 @@ export class AppBarComponent implements OnInit {
 
   userMenuItems: MenuItem[] = [
     {
-      label: 'Bookings', icon: 'pi pi-calendar', command: () => {}
+      label: 'Bookings', icon: 'pi pi-calendar', command: () => {
+      }
     },
-    { label: 'Sign Out', icon: 'pi pi-sign-out', command: () => this.signOut() }
+    { label: 'Sign Out', icon: 'pi pi-sign-out', command: () => this.authService.logout() }
   ];
 
   constructor(private router: Router, public authService: AuthService) {
@@ -47,16 +48,11 @@ export class AppBarComponent implements OnInit {
     })
   }
 
-  ngOnInit(): void {
-  }
-
   register() {
-    this.authService.isSignUpVisible = true;
+    this.authService.isSignUpVisible$.next(true);
   }
 
-  login() {}
-
-  signOut() {
-    this.authService.logout();
+  login() {
+    this.authService.isLoginVisible$.next(true);
   }
 }
