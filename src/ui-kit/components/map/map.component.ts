@@ -31,7 +31,7 @@ export class MapComponent implements OnChanges {
         this.mapConfig?.centerLongitude ?? 12,
         this.mapConfig?.centerLatitude ?? 20
       ], // starting position [lng, lat]
-      zoom: this.mapConfig?.initialZoom ?? 12, // starting zoom
+      zoom: this.mapConfig?.initialZoom ?? 11, // starting zoom
       interactive: true
     });
 
@@ -80,7 +80,7 @@ export class MapComponent implements OnChanges {
     markerObj.getElement().addEventListener('mouseenter', () => {
       popup.setLngLat([marker.lng, marker.lat])
       .setHTML(
-        '<div class="Map-markerInfo">' + marker.popupInfo + '</div>' +
+        '<div class="Map-markerInfo">' + marker.popupInfo?.toLowerCase() + '</div>' +
         '<div class="Map-markerInfo">[' + marker.lng + ',' + marker.lat + ']</div>'
       )
       .addTo(map);

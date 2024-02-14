@@ -35,7 +35,7 @@ export class AttractionsViewComponent implements OnInit {
   }
 
   getAttractionsMarkerElement(attractionName: string) {
-    const icon = AttractionsIconMapper[attractionName];
+    const icon = AttractionsIconMapper[attractionName.toLowerCase()];
     const markerElement = document.createElement('div');
     markerElement.className = "Map-marker " + icon;
     return markerElement

@@ -1,9 +1,9 @@
 // these better be returned from backend
 export const AttractionsIconMapper: { [x: string]: string } = {
-  "SWIMMING POOL": 'fas fa-swimmer',
-  "SAUNA": 'fas fa-hot-tub',
-  "BICYCLES YARD": 'fas fa-bicycle',
-  "Adventure activities": 'fas fa-hiking',
-  "Movie nights": 'fas fa-film',
-  "Bar": 'fas fa-glass-martini-alt',
+  "swimming pool": 'fas fa-swimmer',
+  "sauna": 'fas fa-hot-tub',
+  "bicycles yard": 'fas fa-bicycle',
+  "adventure activities": 'fas fa-hiking',
+  "movie nights": 'fas fa-film',
+  "bar": 'fas fa-glass-martini-alt',
 };
