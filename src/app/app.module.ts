@@ -7,6 +7,7 @@ import { CssResetModule } from "../ui-kit/components/css-reset/src/css-reset.mod
 import { AppBarModule } from "./components/app-bar/app-bar.module";
 import { RoomsViewModule } from "./views/rooms-view/rooms-view.module";
 import { RoomDetailsViewModule } from "./views/room-details-view/room-details-view.module";
+import { ToastModule } from "primeng/toast";
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { RoomDetailsViewModule } from "./views/room-details-view/room-details-vi
     CssResetModule,
     RoomsViewModule,
     RoomDetailsViewModule,
-    AppBarModule
+    AppBarModule,
+    ToastModule
   ],
   providers: [],
   bootstrap: [AppComponent]

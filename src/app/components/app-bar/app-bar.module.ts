@@ -5,6 +5,7 @@ import { ButtonModule } from "primeng/button";
 import { FlexboxModule } from "../../../ui-kit/components/flexbox/src/flexbox.module";
 import { MenuModule } from "primeng/menu";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { SignupModule } from "../signup/signup.module";
 
 @NgModule({
   declarations: [AppBarComponent],
@@ -16,7 +17,8 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
     ButtonModule,
     FlexboxModule,
     BrowserAnimationsModule,
-    MenuModule
+    MenuModule,
+    SignupModule
   ]
 })
 export class AppBarModule { }

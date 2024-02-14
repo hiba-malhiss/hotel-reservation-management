@@ -1,0 +1,11 @@
+.Signup {
+  &-content {
+    display: grid;
+    gap: 16px;
+  }
+
+  &-welcome {
+    font-weight: bold;
+    font-size: 16px;
+  }
+}

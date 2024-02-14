@@ -15,8 +15,9 @@
     <button pButton type="button"
             (click)="menu.toggle($event)"
             icon="pi pi-user"
-            label="John Doe"
+            [label]="currentUser?.name || 'User'"
             class="p-button-secondary p-button-text AppBar-rightBtn"></button>
     <p-menu #menu [popup]="true" [model]="userMenuItems"></p-menu>
   </ng-container>
 </hrm-flexbox>
+<hrm-signup [isVisible]="authService.isSignUpVisible"></hrm-signup>

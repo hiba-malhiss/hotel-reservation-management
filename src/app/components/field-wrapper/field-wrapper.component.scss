@@ -1,0 +1,14 @@
+@import "../../../ui-kit/styling/constants";
+
+.FieldWrapper {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+
+  &-error {
+    grid-column: 2/3;
+    color: $hrm-color-error;
+    font-size: 12px;
+    padding-top: $hrm-spacing-4px;
+    padding-left: $hrm-spacing-2px;
+  }
+}

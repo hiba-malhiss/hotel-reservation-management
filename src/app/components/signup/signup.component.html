@@ -1,0 +1,43 @@
+<p-dialog
+      header="Sign Up"
+      [(visible)]="isVisible"
+      [modal]="true"
+      [responsive]="true"
+      [style]="{width: '400px'}"
+      class="Signup"
+      (onHide)="signupForm.reset()"
+      [formGroup]="signupForm"
+>
+  <ng-template pTemplate="content">
+    <div class="Signup-content">
+      <div class="Signup-welcome">Welcome to Hilton Hotel</div>
+      <hrm-field-wrapper label="Name" [control]="getControl('name')">
+        <input id="Name"
+               type="text"
+               pInputText
+               formControlName="name"
+               [ngClass]="{'p-invalid': signupForm.get('name')?.invalid && signupForm.get('name')?.touched}"
+        />
+      </hrm-field-wrapper>
+
+      <hrm-field-wrapper label="Email" [control]="getControl('email')">
+        <input id="Email"
+               type="text"
+               pInputText
+               formControlName="email"
+               [ngClass]="{'p-invalid': signupForm.get('email')?.invalid && signupForm.get('email')?.touched}"
+        />
+      </hrm-field-wrapper>
+
+      <hrm-field-wrapper label="Password" [control]="getControl('password')">
+        <input id="Password"
+               type="password"
+               pInputText
+               formControlName="password"
+               [ngClass]="{'p-invalid': signupForm.get('password')?.invalid && signupForm.get('password')?.touched}"
+        />
+      </hrm-field-wrapper>
+      <button (click)="onSubmit()" pButton [disabled]="!signupForm.valid">Sign Up</button>
+    </div>
+  </ng-template>
+</p-dialog>
