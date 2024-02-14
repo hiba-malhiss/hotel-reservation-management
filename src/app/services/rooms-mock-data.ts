@@ -1,9 +1,11 @@
-export const roomsMockData = {
+import { Reservation } from "../modals/roomsData.modal";
+
+const roomsMockData = {
   "rooms": [
     {
       "id": 1,
       "roomNumber": "101",
-      "image": "assets/images/room1.jpeg",
+      "image": "assets/images/room2.jpeg",
       "type": "Standard",
       "price": 120,
       "amenities": ["Free Wi-Fi", "TV", "Air Conditioning", "Mini Bar"],
@@ -27,7 +29,7 @@ export const roomsMockData = {
     {
       "id": 3,
       "roomNumber": "103",
-      "image": "assets/images/room1.jpeg",
+      "image": "assets/images/room2.jpeg",
       "type": "Standard",
       "price": 130,
       "amenities": ["Free Wi-Fi", "TV", "Air Conditioning", "Mini Bar"],
@@ -51,7 +53,7 @@ export const roomsMockData = {
     {
       "id": 5,
       "roomNumber": "105",
-      "image": "assets/images/room1.jpeg",
+      "image": "assets/images/room2.jpeg",
       "type": "Deluxe",
       "price": 160,
       "amenities": ["Free Wi-Fi", "TV", "Air Conditioning", "Mini Bar"],
@@ -99,7 +101,7 @@ export const roomsMockData = {
     {
       "id": 9,
       "roomNumber": "109",
-      "image": "assets/images/room1.jpeg",
+      "image": "assets/images/room2.jpeg",
       "type": "Standard",
       "price": 130,
       "amenities": ["Free Wi-Fi", "TV", "Air Conditioning", "Mini Bar"],
@@ -123,7 +125,7 @@ export const roomsMockData = {
     {
       "id": 11,
       "roomNumber": "111",
-      "image": "assets/images/room1.jpeg",
+      "image": "assets/images/room2.jpeg",
       "type": "Standard",
       "price": 120,
       "amenities": ["Free Wi-Fi", "TV", "Air Conditioning", "Mini Bar"],
@@ -159,7 +161,7 @@ export const roomsMockData = {
     {
       "id": 14,
       "roomNumber": "114",
-      "image": "assets/images/room1.jpeg",
+      "image": "assets/images/room2.jpeg",
       "type": "Standard",
       "price": 140,
       "amenities": ["Free Wi-Fi", "TV", "Air Conditioning", "Mini Bar"],
@@ -209,6 +211,25 @@ export const roomsMockData = {
     }
   ]
 };
+
+const ROOMS_KEY = "roomsList"
+
+export function getRoomsMockData() {
+  const roomsData = localStorage.getItem(ROOMS_KEY);
+  if (roomsData) {
+    return JSON.parse(roomsData);
+  } else {
+    localStorage.setItem(ROOMS_KEY, JSON.stringify(roomsMockData))
+    return roomsMockData;
+  }
+}
+
+export function addRoomsReservations(reservations: Reservation) {
+  const roomsData = localStorage.getItem(ROOMS_KEY);
+  const data = roomsData ? JSON.parse(roomsData): roomsMockData;
+  data.reservations.push(reservations);
+  localStorage.setItem(ROOMS_KEY, JSON.stringify(data))
+}
 
 export const roomsFilterMetaMockData = {
   roomTypes: ['Standard', 'Deluxe'],

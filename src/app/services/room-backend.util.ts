@@ -1,5 +1,5 @@
 import { FilterAndSortPayload, RoomsData, Reservation } from "../modals/roomsData.modal";
-import { roomsMockData } from "./rooms-mock-data";
+import { getRoomsMockData } from "./rooms-mock-data";
 import { Room } from "../components/room-card/room.modal";
 import * as moment from "moment";
 
@@ -7,7 +7,7 @@ export function getHotelRoomsWithFilterAndSort(page: number, pageSize: number, f
   const { sortBy, type, amenities } = filters || {};
 
   // Apply sorting
-  let sortedRooms = [...roomsMockData.rooms];
+  let sortedRooms = [...getRoomsMockData().rooms];
   if (sortBy && sortBy.key && sortBy.direction) {
     sortedRooms.sort((a, b) => {
       if (sortBy.direction === 'asc') {
@@ -42,9 +42,10 @@ export function getHotelRoomsWithFilterAndSort(page: number, pageSize: number, f
 }
 
 export function getHotelRoomsWithId(id: number): Room | null {
-  let room = roomsMockData.rooms.find(room => room.id == id) as Room;
+  let roomsData = getRoomsMockData()
+  let room = roomsData.rooms.find((room: Room) => room.id == id) as Room;
   if (room) {
-    let reservations = roomsMockData.reservations.filter(res => res.roomId == id);
+    let reservations = roomsData.reservations.filter((res: Reservation) => res.roomId == id);
     room.availableDates = getRoomAvailabilityDates(room, reservations);
   }
   return room || null;

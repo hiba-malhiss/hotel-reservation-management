@@ -8,6 +8,7 @@ import { CardModule } from "primeng/card";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { ReserveCardComponent } from './reserve-card/reserve-card.component';
 import { ReserveCalendarComponent } from './reserve-calendar/reserve-calendar.component';
+import { SpinnerOverlayModule } from "../../../ui-kit/components/spinner-overlay/spinner-overlay.module";
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { ReserveCalendarComponent } from './reserve-calendar/reserve-calendar.co
     CalendarModule,
     CardModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SpinnerOverlayModule
   ]
 })
 export class RoomDetailsViewModule {

@@ -4,7 +4,7 @@ import * as moment from "moment";
 import { BehaviorSubject, Observable, throwError } from "rxjs";
 import { AuthService } from "./auth.service";
 import { Reservation } from "../modals/roomsData.modal";
-import { roomsMockData } from "./rooms-mock-data";
+import { addRoomsReservations } from "./rooms-mock-data";
 import { checkIfValidReservation } from "./room-backend.util";
 
 @Injectable({
@@ -20,9 +20,13 @@ export class ReserveManagementService {
   }
 
 
+  resetReservationDetails() {
+    this.selectedRoom$.next(null);
+    this.resetReservationData();
+  }
+
   resetReservationData() {
     this.selectedReservationDate = null;
-    this.selectedRoom$.next(null);
     this.numberOfDays = 0;
     this.totalCost = 0;
   }
@@ -66,7 +70,7 @@ export class ReserveManagementService {
     return new Observable((observer) => {
       setTimeout(() => {
         if (checkIfValidReservation(payload)) {
-          roomsMockData.reservations.push(payload);
+          addRoomsReservations(payload);
           observer.next(true);
           observer.complete();
         } else {

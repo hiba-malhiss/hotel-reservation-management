@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from "@angular/router";
 import { RoomsService } from "../../services/rooms.service";
 import { Room } from "../../components/room-card/room.modal";
-import { catchError, switchMap } from "rxjs";
+import { BehaviorSubject, catchError, combineLatest, switchMap, tap } from "rxjs";
 import { AmenitiesIconMapper } from "../../modals/roomsData.modal";
 import { ReserveManagementService } from "../../services/reserve-management.service";
 import { AuthService } from "../../services/auth.service";
@@ -17,6 +17,8 @@ export class RoomDetailsViewComponent implements OnInit, OnDestroy {
   room?: Room | null;
   AmenitiesIconMapper = AmenitiesIconMapper;
   isReservingRoom = false;
+  isLoadingRoomDetails = false;
+  refreshRoom$ = new BehaviorSubject(true);
 
   constructor(private route: ActivatedRoute,
               private roomsService: RoomsService,
@@ -27,11 +29,19 @@ export class RoomDetailsViewComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.route.params.pipe(
-      switchMap(params => this.roomsService.getHotelRoomById(params['id']))
-    ).subscribe(data => {
+    combineLatest([this.route.params, this.refreshRoom$])
+    .pipe(
+      tap(() => this.isLoadingRoomDetails = true),
+      switchMap(([params]) => this.roomsService.getHotelRoomById(params['id'])),
+      catchError((err) => {
+        this.isLoadingRoomDetails = false;
+        throw err;
+      })
+    )
+    .subscribe(data => {
       this.room = data;
       this.reserveService.selectedRoom$.next(data);
+      this.isLoadingRoomDetails = false;
     });
   }
 
@@ -41,7 +51,9 @@ export class RoomDetailsViewComponent implements OnInit, OnDestroy {
       this.reserveService.onReserveRoom()
       .pipe(catchError((err) => {
         this.isReservingRoom = false;
-        this.messageService.add({ severity: 'error', summary: 'Error', detail: "Error while reserving the room!" });
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: "Sorry! these dates already booked" });
+        this.reserveService.resetReservationData();
+        this.refreshRoom$.next(true);
         throw err
       }))
       .subscribe(() => {
@@ -59,6 +71,6 @@ export class RoomDetailsViewComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.reserveService.resetReservationData();
+    this.reserveService.resetReservationDetails();
   }
 }
