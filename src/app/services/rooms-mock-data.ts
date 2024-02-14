@@ -8,7 +8,7 @@ const roomsMockData = {
       "image": "assets/images/room2.jpeg",
       "type": "Standard",
       "price": 120,
-      "amenities": ["Free Wi-Fi", "TV", "Air Conditioning", "Mini Bar"],
+      "amenities": ["Wifi", "Kitchen", "Mini Bar", "Air Conditioning", "Heating", "Free Wi-Fi", "TV", "Hair dryer", "Iron"],
       "availability": [
         { "startDate": "2024-12-05", "endDate": "2024-12-12" },
         { "startDate": "2024-12-18", "endDate": "2024-12-25" }

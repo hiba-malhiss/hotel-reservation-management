@@ -42,4 +42,10 @@
       margin-top: 0 !important;
     }
   }
+
+  &-amenities {
+    display: grid;
+    gap: $hrm-spacing-24px $hrm-spacing-32px;
+    grid-template-columns: max-content max-content;
+  }
 }

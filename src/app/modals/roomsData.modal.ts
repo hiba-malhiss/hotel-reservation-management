@@ -29,13 +29,13 @@ export interface Reservation {
 }
 
 export const AmenitiesIconMapper: { [key: string]: string } = {
-  "Wifi": "pi pi-wifi",
-  "Kitchen": "pi pi-home",
-  "Mini Bar": "pi pi-hourglass",
-  "Air Conditioning": "pi pi-bolt\n",
-  "Heating": "pi pi-hourglass",
-  "Free Wi-Fi": "pi pi-wifi",
-  "TV": "pi pi-desktop",
-  "Hair dryer": "pi pi-user",
-  "Iron": "pi pi-circle"
+  "Wifi": "fas fa-wifi",
+  "Kitchen": "fas fa-utensils",
+  "Mini Bar": "fas fa-glass-martini-alt",
+  "Air Conditioning": "fas fa-snowflake",
+  "Heating": "fas fa-thermometer-full",
+  "Free Wi-Fi": "fas fa-wifi",
+  "TV": "fas fa-tv",
+  "Hair dryer": "fas fa-wind",
+  "Iron": "fas fa-question"
 };

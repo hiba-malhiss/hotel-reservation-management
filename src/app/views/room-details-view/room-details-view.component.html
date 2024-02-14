@@ -11,10 +11,12 @@
       <div class="RoomDetailsView-subHeader">{{room?.type}}</div>
       <p-divider></p-divider>
       <span class="RoomDetailsView-subHeader">What this room offers</span>
-      <hrm-flexbox spacing="small" *ngFor="let amenity of room?.amenities">
-        <i [class]="AmenitiesIconMapper[amenity]"></i>
-        <span>{{amenity}}</span>
-      </hrm-flexbox>
+      <div class="RoomDetailsView-amenities">
+        <hrm-flexbox spacing="small" *ngFor="let amenity of room?.amenities">
+          <i [class]="AmenitiesIconMapper[amenity]"></i>
+          <span>{{amenity}}</span>
+        </hrm-flexbox>
+      </div>
       <p-divider></p-divider>
       <span class="RoomDetailsView-subHeader">Select available dates</span>
       <hrm-reserve-calendar [inline]="true"></hrm-reserve-calendar>
