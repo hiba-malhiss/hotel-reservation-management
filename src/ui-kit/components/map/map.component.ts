@@ -1,28 +1,7 @@
 import { Component, ElementRef, Input, OnChanges, ViewChild } from '@angular/core';
 // @ts-ignore
 import * as mapboxgl from 'mapbox-gl';
-
-export interface MarkerOptions {
-  lng: number;
-  lat: number;
-  color?: string;
-  popupInfo?: string;
-  element?: HTMLElement;
-}
-
-export interface MapConfig {
-  centerLongitude?: number;
-  centerLatitude?: number;
-  initialZoom?: number;
-  markers?: MarkerOptions[];
-  style?: 'street' | 'outdoors' | 'satellite'
-}
-
-const MapStyles = {
-  street: 'mapbox://styles/mapbox/streets-v12',
-  outdoors: 'mapbox://styles/mapbox/outdoors-v12',
-  satellite: 'mapbox://styles/mapbox/satellite-v9',
-};
+import { MapConfig, MapStyles, MarkerOptions } from "./map.modals";
 
 @Component({
   selector: 'hrm-map',
@@ -41,6 +20,7 @@ export class MapComponent implements OnChanges {
   }
 
   private setupMap(): void {
+    // todo: move
     mapboxgl.accessToken = 'pk.eyJ1IjoiZHBpZXRyb2NhcmxvIiwiYSI6ImNram9tOGFuMTBvb3oyeXFsdW5uYmJjNGQifQ._zE6Mub0-Vpl7ggMj8xSUQ';
     const map = new mapboxgl.Map({
       container: 'map', // container ID
@@ -71,33 +51,79 @@ export class MapComponent implements OnChanges {
   }
 
   addMarkers(map: any) {
-    if (this.mapConfig?.markers) {
-      const popup = new mapboxgl.Popup({ offset: 25 });
+    map.on('load', () => {
+      if (this.mapConfig?.markers) {
+        const popup = new mapboxgl.Popup({ offset: 25 });
 
-      this.mapConfig.markers.forEach(marker => {
-        let markerObj = new mapboxgl.Marker({
-          color: marker.color ?? '#3FB1CE',
-          element: marker.element,
-          draggable: false
-        })
-        .setLngLat([marker.lng, marker.lat])
-        .addTo(map);
+        this.mapConfig?.markers.forEach(marker => {
+          let markerObj = new mapboxgl.Marker({
+            color: marker.color ?? '#3FB1CE',
+            element: marker.element,
+            draggable: false
+          })
+          .setLngLat([marker.lng, marker.lat])
+          .addTo(map);
 
-        if (marker.popupInfo) {
-          markerObj.getElement().addEventListener('mouseenter', () => {
-            popup.setLngLat([marker.lng, marker.lat])
-            .setHTML(
-              '<div class="Map-markerInfo">' + marker.popupInfo + '</div>' +
-              '<div class="Map-markerInfo">[' + marker.lng + ',' + marker.lat + ']</div>'
-            )
-            .addTo(map);
-          });
+          if (marker.popupInfo) {
+            this.addMarkerPopup(markerObj, marker, map, popup);
+          }
 
-          markerObj.getElement().addEventListener('mouseleave', () => {
-            popup.remove();
-          });
-        }
-      });
-    }
+          if (marker.connections) {
+            this.addMarkerConnections(marker, map);
+          }
+        });
+      }
+    });
+  }
+
+  addMarkerPopup(markerObj: any, marker: MarkerOptions, map: any, popup: any) {
+    markerObj.getElement().addEventListener('mouseenter', () => {
+      popup.setLngLat([marker.lng, marker.lat])
+      .setHTML(
+        '<div class="Map-markerInfo">' + marker.popupInfo + '</div>' +
+        '<div class="Map-markerInfo">[' + marker.lng + ',' + marker.lat + ']</div>'
+      )
+      .addTo(map);
+    });
+
+    markerObj.getElement().addEventListener('mouseleave', () => {
+      popup.remove();
+    });
+  }
+
+  addMarkerConnections(marker: MarkerOptions, map: any) {
+    marker?.connections?.forEach(connectionId => {
+      const connectedMarker = this.mapConfig?.markers?.find(m => m.id === connectionId);
+      const id = connectionId + '' + (marker?.id||'')
+      if (connectedMarker) {
+        const lineLayer = {
+          id,
+          type: 'line',
+          source: {
+            type: 'geojson',
+            data: {
+              type: 'Feature',
+              geometry: {
+                type: 'LineString',
+                coordinates: [
+                  [marker.lng, marker.lat],
+                  [connectedMarker.lng, connectedMarker.lat]
+                ]
+              }
+            }
+          },
+          layout: {
+            'line-join': 'round',
+            'line-cap': 'round'
+          },
+          paint: {
+            'line-color': '#a5a5a5',
+            'line-width': 2
+          }
+        };
+
+        map.addLayer(lineLayer);
+      }
+    });
   }
 }

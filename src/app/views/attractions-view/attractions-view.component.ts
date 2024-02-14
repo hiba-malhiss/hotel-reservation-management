@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AttractionsService } from "../../services/attractions.service";
 import { Attraction } from "../../modals/attractions.modal";
-import { MapConfig } from "../../../ui-kit/components/map/map.component";
 import { AttractionsIconMapper } from "./atraction-icon-mapper";
+import { MapConfig } from "../../../ui-kit/components/map/map.modals";
 
 @Component({
   selector: 'app-attractions-view',
@@ -22,6 +22,8 @@ export class AttractionsViewComponent implements OnInit {
         lng: attraction.location.lng,
         lat: attraction.location.lat,
         popupInfo: attraction.name,
+        connections: attraction.connections,
+        id: attraction.id,
         element: this.getAttractionsMarkerElement(attraction.name)
       }))
 
