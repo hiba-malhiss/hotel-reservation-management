@@ -55,4 +55,26 @@ export class ReserveCalendarComponent implements OnInit {
     this.minEnabledDate = minEnabled.toDate();
     this.maxEnabledDate = maxEnabled.toDate();
   }
+
+  // p-calender allows selecting a date range that includes disabled dates
+  // this reset the selected dates if the range includes disabled dates
+  onSelect(value: [Date, Date]) {
+    this.reserveService.selectedReservationDate = value;
+    if (value[0] && value[1]) {
+      let selectedStartDate = moment(value[0])
+      let selectedEndDate = moment(value[1])
+      const isDisabledDates = (date: moment.Moment) =>
+        this.disabledDates.some(disabledDate => moment(disabledDate).isSame(date, 'day'));
+
+      while (selectedStartDate.isBefore(selectedEndDate, 'day')) {
+        let date = selectedStartDate.clone();
+        if (isDisabledDates(date)) {
+          this.reserveService.selectedReservationDate = null;
+          return;
+        }
+        selectedStartDate.add(1, 'day');
+      }
+      this.reserveService.onReservationDatesSelect()
+    }
+  }
 }
