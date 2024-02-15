@@ -11,7 +11,7 @@ import {
   deleteRoomsReservations
 } from '../room/rooms-mock-data';
 import {
-  checkIfValidReservation,
+  checkIfValidReservation, DATE_FORMAT,
   getUserReservations
 } from '../room/room-backend.util';
 import { Room } from '../../components/room-card/room.modal';
@@ -61,8 +61,8 @@ export class ReserveManagementService {
       let payload: Reservation = {
         id: Math.random(),
         roomId: this.selectedRoom$.value.id,
-        startDate: moment(this.selectedReservationDate[0]).format('YYYY-MM-DD'),
-        endDate: moment(this.selectedReservationDate[1]).format('YYYY-MM-DD'),
+        startDate: moment(this.selectedReservationDate[0]).format(DATE_FORMAT),
+        endDate: moment(this.selectedReservationDate[1]).format(DATE_FORMAT),
         guestName: user?.name
       };
 

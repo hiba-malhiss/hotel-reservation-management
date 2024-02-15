@@ -1,6 +1,6 @@
 <hrm-flexbox direction="vertical" spacing="small" class="RoomDetailsView">
   <hrm-spinner-overlay
-    [isLoading]="isLoadingRoomDetails || isReservingRoom"
+        [isLoading]="isLoadingRoomDetails || isReservingRoom"
   ></hrm-spinner-overlay>
   <div class="RoomDetailsView-title">Room {{ room?.roomNumber }}</div>
   <div class="RoomDetailsView-img">
@@ -21,6 +21,12 @@
       </div>
       <p-divider></p-divider>
       <span class="RoomDetailsView-subHeader">Select available date range</span>
+      <div *ngIf="room?.nextAvailableDate" class="RoomDetailsView-available">
+        Available from: {{ room?.nextAvailableDate }}
+      </div>
+      <div *ngIf="!room?.nextAvailableDate" class="RoomDetailsView-notAvail">
+        Room is fully booked
+      </div>
       <hrm-reserve-calendar [inline]="true"></hrm-reserve-calendar>
     </hrm-flexbox>
     <hrm-reserve-card (reserve)="onReserve()"></hrm-reserve-card>

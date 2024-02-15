@@ -30,6 +30,18 @@
     }
   }
 
+  &-available {
+    font-size: 12px;
+    margin-top: 8px !important;
+    color: $hrm-gray-color;
+  }
+
+  &-notAvail {
+    font-size: 12px;
+    margin-top: 8px !important;
+    color: $hrm-color-error;
+  }
+
   p-divider {
     margin-top: 0 !important;
   }

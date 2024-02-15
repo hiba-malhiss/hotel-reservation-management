@@ -9,6 +9,8 @@ import { getRoomsMockData } from './rooms-mock-data';
 import { Room } from '../../components/room-card/room.modal';
 import * as moment from 'moment';
 
+export const DATE_FORMAT = "YYYY-MM-DD";
+
 export function getHotelRoomsWithFilterAndSort(
   page: number,
   pageSize: number,
@@ -58,42 +60,37 @@ export function getHotelRoomsWithFilterAndSort(
 }
 
 function getRoomNextAvailableDate(room: Room): string | null {
-  const reservations = getRoomsMockData().reservations.filter(
-    (res: Reservation) => res.roomId === room.id
-  );
-  const dates = getRangeDatesArray(room.availability);
-  const reservedDates = getRangeDatesArray(reservations);
-  for (let i = 0; i < dates.length; i++) {
-    if (!reservedDates.includes(dates[i])) return dates[i];
-  }
-  return null;
+  let availableDates = getRoomAvailabilityDates(room)
+  const minDate = moment.min(availableDates);
+  return availableDates.length ? minDate.format(DATE_FORMAT) : null;
 }
 
 export function getHotelRoomsWithId(id: number): Room | null {
   let roomsData = getRoomsMockData();
   let room = roomsData.rooms.find((room: Room) => room.id == id) as Room;
   if (room) {
-    let reservations = roomsData.reservations.filter(
-      (res: Reservation) => res.roomId == id
-    );
-    room.availableDates = getRoomAvailabilityDates(room, reservations);
+    room.availableDates = getRoomAvailabilityDates(room);
+    const minDate = moment.min(room.availableDates);
+    room.nextAvailableDate = room.availableDates.length ? minDate.format(DATE_FORMAT) : null;
   }
   return room || null;
 }
 
 // return array of dates: all availability dates - reserved dates
-export function getRoomAvailabilityDates(
-  room: Room,
-  reservations: Reservation[]
-): moment.Moment[] {
+export function getRoomAvailabilityDates(room: Room): moment.Moment[] {
+  let roomsData = getRoomsMockData();
+  let reservations = roomsData.reservations.filter(
+    (res: Reservation) => res.roomId == room.id
+  );
+
+  const reservationDates: string[] = getRangeDatesArray(reservations);
   const availabilityDates: string[] = getRangeDatesArray(
     room.availability || []
   );
-  const reservationDates: string[] = getRangeDatesArray(reservations);
 
   return availabilityDates
-    .filter(date => !reservationDates.includes(date))
-    .map(date => moment(date));
+  .filter(date => !reservationDates.includes(date))
+  .map(date => moment(date));
 }
 
 function getRangeDatesArray(
@@ -105,7 +102,7 @@ function getRangeDatesArray(
     const endDate = moment(dateRange.endDate);
 
     while (startDate.isSameOrBefore(endDate, 'day')) {
-      dates.push(startDate.format('YYYY-MM-DD'));
+      dates.push(startDate.format(DATE_FORMAT));
       startDate.add(1, 'day');
     }
   }
@@ -118,9 +115,9 @@ export function checkIfValidReservation(reservation: Reservation): boolean {
     const startDate = moment(reservation.startDate);
     const endDate = moment(reservation.endDate);
     const list =
-      room.availableDates?.map(date => date.format('YYYY-MM-DD')) || [];
+      room.availableDates?.map(date => date.format(DATE_FORMAT)) || [];
     while (startDate.isSameOrBefore(endDate, 'day')) {
-      if (!list.includes(startDate.format('YYYY-MM-DD'))) {
+      if (!list.includes(startDate.format(DATE_FORMAT))) {
         return false;
       }
       startDate.add(1, 'day');

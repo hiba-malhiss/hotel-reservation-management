@@ -9,7 +9,7 @@
   </ng-template>
   <ng-template pTemplate="content">
     <div *ngIf="room.nextAvailableDate" class="RoomCard-available">
-      Available at: {{ room.nextAvailableDate }}
+      Available from: {{ room.nextAvailableDate }}
     </div>
     <div *ngIf="!room.nextAvailableDate" class="RoomCard-notAvail">
       Room is fully booked
