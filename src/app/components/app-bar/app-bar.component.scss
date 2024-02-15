@@ -3,6 +3,10 @@
 .AppBar {
   display: block;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.18);
+  padding: var(--var-content-padding);
+  padding-top: 0;
+  padding-bottom: 0;
+  background: #f8f9fa;
 
   &-userMenu {
     margin-left: auto !important;

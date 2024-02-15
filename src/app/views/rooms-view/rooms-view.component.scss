@@ -1,7 +1,7 @@
 @import "../../../ui-kit/styling/constants";
 
 .RoomView {
-  padding: $page-content-padding;
+  padding: var(--var-content-padding);
   min-height: $page-min-height;
   display: flex;
   position: relative;

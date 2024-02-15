@@ -2,7 +2,7 @@
 
 .ManageReservations {
   display: block;
-  padding: $page-content-padding;
+  padding: var(--var-content-padding);
   position: relative;
 
   &-img {
