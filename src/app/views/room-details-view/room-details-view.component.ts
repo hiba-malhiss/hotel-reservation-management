@@ -53,7 +53,6 @@ export class RoomDetailsViewComponent extends SubscriptionManagerComponent imple
       this.isReservingRoom = true;
       this.reserveService.onReserveRoom()
       .pipe(
-        takeUntil(this.destroy$),
         catchError((err) => {
         this.isReservingRoom = false;
         this.messageService.add({ severity: 'error', summary: 'Error', detail: "Sorry! these dates already booked" });

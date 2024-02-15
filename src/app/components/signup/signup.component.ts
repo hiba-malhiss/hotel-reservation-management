@@ -49,7 +49,6 @@ export class SignupComponent extends SubscriptionManagerComponent {
         this.signupForm.value.email,
         this.signupForm.value.password)
       .pipe(
-        takeUntil(this.destroy$),
         catchError((error) => {
           this.messageService.add({ severity: 'error', summary: 'Error', detail: "Email/Name already exist" });
           throw error;

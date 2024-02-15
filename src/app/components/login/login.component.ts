@@ -47,7 +47,6 @@ export class LoginComponent extends SubscriptionManagerComponent{
         this.loginForm.value.email,
         this.loginForm.value.password)
       .pipe(
-        takeUntil(this.destroy$),
         catchError((error) => {
           this.messageService.add({ severity: 'error', summary: 'Error', detail: "User doesn't exist" });
           throw error;
