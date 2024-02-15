@@ -25,6 +25,7 @@ export class AppBarComponent {
   ]
 
   items: MenuItem [] = [
+    { label: 'Home', routerLink: '/' },
     { label: 'Rooms', routerLink: '/rooms' },
     { label: 'Attractions', routerLink: '/attractions' },
   ];
