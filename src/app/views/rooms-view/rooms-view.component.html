@@ -1,15 +1,15 @@
 <div class="RoomView">
-  <hrm-spinner-overlay [isLoading]="isLoadingRooms"></hrm-spinner-overlay>
   <hrm-room-filters-sidebar (onFilterOrSortChange)="filters$.next($event)">
   </hrm-room-filters-sidebar>
 
   <hrm-flexbox
     direction="vertical"
     spacing="small"
-    style="width: 100%"
+    style="width: 100%; position: relative"
     [fullHeight]="true"
     [fullWidth]="true"
   >
+    <hrm-spinner-overlay [isLoading]="isLoadingRooms"></hrm-spinner-overlay>
     <div class="RoomView-content">
       <div
         *ngIf="!isLoadingRooms && !rooms.length"
