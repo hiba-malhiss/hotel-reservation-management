@@ -1,7 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, HostListener, Input, OnInit, ViewChild } from '@angular/core';
 import { ReserveManagementService } from "../../../services/reserve-management.service";
 import * as moment from "moment";
 import { Room } from "../../../components/room-card/room.modal";
+import { Calendar } from 'primeng/calendar';
 
 @Component({
   selector: 'hrm-reserve-calendar',
@@ -15,6 +16,11 @@ export class ReserveCalendarComponent implements OnInit {
   // @ts-ignore
   maxEnabledDate: Date;
 
+  disableScroll: boolean = true;
+
+  @ViewChild('calendar')
+  private calendar?: Calendar;
+
   @Input()
   inline: boolean = false;
 
@@ -27,7 +33,7 @@ export class ReserveCalendarComponent implements OnInit {
   ngOnInit(): void {
     this.reserveService.selectedRoom$.subscribe((room) => {
       this.setDisabledDates(room)
-    })
+    });
   }
 
   // p-calender doesn't accept enabled dates it only accept disabled dates
@@ -54,6 +60,9 @@ export class ReserveCalendarComponent implements OnInit {
 
     this.minEnabledDate = minEnabled.toDate();
     this.maxEnabledDate = maxEnabled.toDate();
+    //workaround: the calendar causes the page to scroll into the calendar view when we set the defaultValue
+    // so prevent scrolling then enables it after setting the defaultValue by 1sec
+    setTimeout(()=>{this.disableScroll = false;}, 1000)
   }
 
   // p-calender allows selecting a date range that includes disabled dates
@@ -74,7 +83,15 @@ export class ReserveCalendarComponent implements OnInit {
         }
         selectedStartDate.add(1, 'day');
       }
-      this.reserveService.onReservationDatesSelect()
+      this.reserveService.onReservationDatesSelect();
+      this.calendar?.hideOverlay();
+    }
+  }
+
+  @HostListener('window:scroll', ['$event'])
+  onScroll(event: Event) {
+    if (this.disableScroll) {
+      window.scrollTo(0, 0);
     }
   }
 }

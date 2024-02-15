@@ -26,7 +26,8 @@ export class RoomsViewComponent implements OnInit {
   ngOnInit(): void {
     this.filters.subscribe(() => {
       if (this.paginator) {
-        // reset pagination on filter change reseting the pagination will trigger fetch
+        // reset pagination on filter change
+        // resting the pagination will trigger fetch
         this.paginator.changePage(0);
       } else {
         this.fetchRooms();
@@ -47,6 +48,8 @@ export class RoomsViewComponent implements OnInit {
   }
 
   onPaginationChange(event: any) {
+    // skip first fetch, to prevent double fetching
+    if(this.currentPage === event.page + 1) return;
     this.currentPage = event.page + 1;
     this.fetchRooms();
   }
