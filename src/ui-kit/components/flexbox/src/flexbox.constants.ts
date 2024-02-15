@@ -1,9 +1,4 @@
-export type FlexboxAlign =
-  | 'center'
-  | 'end'
-  | 'normal'
-  | 'start'
-  | 'baseline';
+export type FlexboxAlign = 'center' | 'end' | 'normal' | 'start' | 'baseline';
 
 export type FlexboxDirection = 'horizontal' | 'vertical';
 
@@ -17,9 +12,4 @@ export type FlexboxSpacing =
   | 'xxlarge'
   | 'xxsmall';
 
-export type FlexboxJustify =
-  | 'between'
-  | 'center'
-  | 'equal'
-  | 'end'
-  | 'start';
+export type FlexboxJustify = 'between' | 'center' | 'equal' | 'end' | 'start';

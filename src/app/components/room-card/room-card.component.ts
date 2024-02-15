@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Room } from "./room.modal";
-import { Router } from "@angular/router";
+import { Room } from './room.modal';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'hrm-room-card',
@@ -11,14 +11,11 @@ export class RoomCardComponent implements OnInit {
   @Input()
   room!: Room;
 
-  constructor(private router: Router) {
-  }
+  constructor(private router: Router) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   navigateToRoomDetails() {
-    this.router.navigate(["/rooms", this.room.id])
+    this.router.navigate(['/rooms', this.room.id]);
   }
-
 }

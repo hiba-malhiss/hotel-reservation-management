@@ -1,7 +1,10 @@
 <div class="p-field FieldWrapper">
   <label [for]="label">{{ label }}</label>
   <ng-content></ng-content>
-  <div *ngIf="control.invalid && control.touched" class="p-invalid FieldWrapper-error">
+  <div
+    *ngIf="control.invalid && control.touched"
+    class="p-invalid FieldWrapper-error"
+  >
     <small>{{ getErrorMessage() }}</small>
   </div>
 </div>

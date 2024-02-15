@@ -1,34 +1,51 @@
 <p-dialog
-      header="Login"
-      [(visible)]="isVisible"
-      [modal]="true"
-      [style]="{width: '400px'}"
-      class="Login"
-      (onHide)="loginForm.reset()"
-      [formGroup]="loginForm"
+  header="Login"
+  [(visible)]="isVisible"
+  [modal]="true"
+  [style]="{ width: '400px' }"
+  class="Login"
+  (onHide)="loginForm.reset()"
+  [formGroup]="loginForm"
 >
   <ng-template pTemplate="content">
     <div class="Login-content">
       <div class="Login-welcome">Welcome to Hilton Hotel</div>
       <hrm-field-wrapper label="Email" [control]="getControl('email')">
-        <input id="Email"
-               type="text"
-               pInputText
-               formControlName="email"
-               [ngClass]="{'p-invalid': loginForm.get('email')?.invalid && loginForm.get('email')?.touched}"
+        <input
+          id="Email"
+          type="text"
+          pInputText
+          formControlName="email"
+          [ngClass]="{
+            'p-invalid':
+              loginForm.get('email')?.invalid && loginForm.get('email')?.touched
+          }"
         />
       </hrm-field-wrapper>
 
       <hrm-field-wrapper label="Password" [control]="getControl('password')">
-        <input id="Password"
-               type="password"
-               pInputText
-               formControlName="password"
-               [ngClass]="{'p-invalid': loginForm.get('password')?.invalid && loginForm.get('password')?.touched}"
+        <input
+          id="Password"
+          type="password"
+          pInputText
+          formControlName="password"
+          [ngClass]="{
+            'p-invalid':
+              loginForm.get('password')?.invalid &&
+              loginForm.get('password')?.touched
+          }"
         />
       </hrm-field-wrapper>
-      <button (click)="onSubmit()" pButton [disabled]="!loginForm.valid" label="Login"></button>
-      <div>Or sign up: <span class="Login-signup" (click)="onRegister()">here</span></div>
+      <button
+        (click)="onSubmit()"
+        pButton
+        [disabled]="!loginForm.valid"
+        label="Login"
+      ></button>
+      <div>
+        Or sign up:
+        <span class="Login-signup" (click)="onRegister()">here</span>
+      </div>
     </div>
   </ng-template>
 </p-dialog>

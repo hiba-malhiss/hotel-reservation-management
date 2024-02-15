@@ -1,19 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AppBarComponent } from "./app-bar.component";
-import { ButtonModule } from "primeng/button";
-import { FlexboxModule } from "../../../ui-kit/components/flexbox/src/flexbox.module";
-import { MenuModule } from "primeng/menu";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { SignupModule } from "../signup/signup.module";
-import { LoginModule } from "../login/login.module";
-import { MenubarModule } from "primeng/menubar";
+import { AppBarComponent } from './app-bar.component';
+import { ButtonModule } from 'primeng/button';
+import { FlexboxModule } from '../../../ui-kit/components/flexbox/src/flexbox.module';
+import { MenuModule } from 'primeng/menu';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SignupModule } from '../signup/signup.module';
+import { LoginModule } from '../login/login.module';
+import { MenubarModule } from 'primeng/menubar';
 
 @NgModule({
   declarations: [AppBarComponent],
-  exports: [
-    AppBarComponent
-  ],
+  exports: [AppBarComponent],
   imports: [
     CommonModule,
     ButtonModule,
@@ -25,4 +23,4 @@ import { MenubarModule } from "primeng/menubar";
     MenubarModule
   ]
 })
-export class AppBarModule { }
+export class AppBarModule {}

@@ -8,9 +8,8 @@ describe('ReserveCalendarComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ReserveCalendarComponent ]
-    })
-    .compileComponents();
+      declarations: [ReserveCalendarComponent]
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ReserveCalendarComponent);
     component = fixture.componentInstance;

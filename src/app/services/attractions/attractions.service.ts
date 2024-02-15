@@ -1,17 +1,16 @@
 import { Injectable } from '@angular/core';
-import { getAttractionsMockData } from "./attractions-mock-data";
-import { Attraction } from "../../modals/attractions.modal";
+import { getAttractionsMockData } from './attractions-mock-data';
+import { Attraction } from '../../modals/attractions.modal';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AttractionsService {
-
-  constructor() { }
+  constructor() {}
 
   getHotelAttractionsMetadata(): Promise<Attraction[]> {
     return new Promise((resolve, reject) => {
-      let data = getAttractionsMockData()
+      let data = getAttractionsMockData();
 
       setTimeout(() => {
         resolve(data);

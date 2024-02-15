@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 // @ts-ignore
 import * as bcrypt from 'bcryptjs';
-import { capitalizeFirstLetter } from "../../../ui-kit/utils/string-utils";
-import { Router } from "@angular/router";
+import { capitalizeFirstLetter } from '../../../ui-kit/utils/string-utils';
+import { Router } from '@angular/router';
 
 export interface User {
   name: string;
@@ -11,8 +11,8 @@ export interface User {
   password?: string;
 }
 
-const USER_KEY = "currentUser";
-const USERS_LIST_KEY = "registeredUsersList";
+const USER_KEY = 'currentUser';
+const USERS_LIST_KEY = 'registeredUsersList';
 
 @Injectable({
   providedIn: 'root'
@@ -21,13 +21,12 @@ export class AuthService {
   isSignUpVisible$ = new BehaviorSubject(false);
   isLoginVisible$ = new BehaviorSubject(false);
 
-  constructor(private router: Router,) {
-  }
+  constructor(private router: Router) {}
 
   public currentUser$ = new BehaviorSubject<User | null>(null);
 
   public fetchUser(): Observable<User> {
-    return new Observable((observer) => {
+    return new Observable(observer => {
       setTimeout(() => {
         const userJson = localStorage.getItem(USER_KEY);
         if (userJson) {
@@ -52,7 +51,7 @@ export class AuthService {
     return new Observable(observer => {
       const user = list.find((u: User) => u.email === email);
       if (user && bcrypt.compareSync(password, user.password)) {
-        console.log(list, user)
+        console.log(list, user);
         this.currentUser$.next(user);
         localStorage.setItem(USER_KEY, JSON.stringify(user));
         observer.next(user);
@@ -66,13 +65,14 @@ export class AuthService {
   public logout(): void {
     localStorage.removeItem(USER_KEY);
     this.currentUser$.next(null);
-    this.router.navigateByUrl('/')
+    this.router.navigateByUrl('/');
   }
 
   public register(
     name: string,
     email: string,
-    password: string): Observable<User> {
+    password: string
+  ): Observable<User> {
     const passwordHash = bcrypt.hashSync(password, 10);
     const user: User = {
       name: capitalizeFirstLetter(name),
@@ -83,7 +83,9 @@ export class AuthService {
     const users = localStorage.getItem(USERS_LIST_KEY);
     if (users) {
       const list = JSON.parse(users);
-      const emailExist = list.find((usr: User) => usr.email === email || usr.name == name);
+      const emailExist = list.find(
+        (usr: User) => usr.email === email || usr.name == name
+      );
       if (emailExist) {
         return new Observable(observer => {
           observer.error('Email already exists');

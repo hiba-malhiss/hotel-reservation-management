@@ -4,5 +4,5 @@ export const ValidationErrorMessages: { [str: string]: string } = {
   min: 'Out of range',
   max: 'Out of range',
   minlength: 'Field length is too short',
-  maxlength: 'Field length is too short',
+  maxlength: 'Field length is too short'
 };

@@ -8,9 +8,8 @@ describe('ManageReservationsViewComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ManageReservationsViewComponent ]
-    })
-    .compileComponents();
+      declarations: [ManageReservationsViewComponent]
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ManageReservationsViewComponent);
     component = fixture.componentInstance;

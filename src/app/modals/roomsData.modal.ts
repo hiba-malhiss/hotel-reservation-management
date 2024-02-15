@@ -1,4 +1,4 @@
-import { Room } from "../components/room-card/room.modal";
+import { Room } from '../components/room-card/room.modal';
 
 export interface RoomsData {
   rooms: Room[];
@@ -31,7 +31,7 @@ export interface Reservation {
 export type UserReservation = Reservation & {
   roomNumber?: number;
   image?: string;
-}
+};
 
 export interface UserReservationResponse {
   totalRecords: number;
@@ -39,13 +39,13 @@ export interface UserReservationResponse {
 }
 
 export const AmenitiesIconMapper: { [key: string]: string } = {
-  "Wifi": "fas fa-wifi",
-  "Kitchen": "fas fa-utensils",
-  "Mini Bar": "fas fa-glass-martini-alt",
-  "Air Conditioning": "fas fa-snowflake",
-  "Heating": "fas fa-thermometer-full",
-  "Free Wi-Fi": "fas fa-wifi",
-  "TV": "fas fa-tv",
-  "Hair dryer": "fas fa-wind",
-  "Iron": "fas fa-question"
+  Wifi: 'fas fa-wifi',
+  Kitchen: 'fas fa-utensils',
+  'Mini Bar': 'fas fa-glass-martini-alt',
+  'Air Conditioning': 'fas fa-snowflake',
+  Heating: 'fas fa-thermometer-full',
+  'Free Wi-Fi': 'fas fa-wifi',
+  TV: 'fas fa-tv',
+  'Hair dryer': 'fas fa-wind',
+  Iron: 'fas fa-question'
 };

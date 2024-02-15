@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
 import { MenuItem } from 'primeng/api';
-import { AuthService, User } from "../../services/auth/auth.service";
-import { SubscriptionManagerComponent } from "../subscription-manager/subscription-manager.component";
-import { takeUntil } from "rxjs";
+import { AuthService, User } from '../../services/auth/auth.service';
+import { SubscriptionManagerComponent } from '../subscription-manager/subscription-manager.component';
+import { takeUntil } from 'rxjs';
 
 interface AppBarButton {
-  label: string,
-  onClick: () => void,
-  shouldHide?: () => boolean,
-  icon?: string,
-  class?: string
+  label: string;
+  onClick: () => void;
+  shouldHide?: () => boolean;
+  icon?: string;
+  class?: string;
 }
 
 @Component({
@@ -21,15 +21,23 @@ export class AppBarComponent extends SubscriptionManagerComponent {
   isLoggedIn: boolean = false;
   currentUser: User | null = null;
 
-  userMenuItems: MenuItem [] = [
-    { label: 'Reservations', icon: 'pi pi-calendar', routerLink: '/reservations' },
-    { label: 'Sign Out', icon: 'pi pi-sign-out', command: () => this.authService.logout() }
-  ]
+  userMenuItems: MenuItem[] = [
+    {
+      label: 'Reservations',
+      icon: 'pi pi-calendar',
+      routerLink: '/reservations'
+    },
+    {
+      label: 'Sign Out',
+      icon: 'pi pi-sign-out',
+      command: () => this.authService.logout()
+    }
+  ];
 
-  items: MenuItem [] = [
+  items: MenuItem[] = [
     { label: 'Home', routerLink: '/home' },
     { label: 'Rooms', routerLink: '/rooms' },
-    { label: 'Attractions', routerLink: '/attractions' },
+    { label: 'Attractions', routerLink: '/attractions' }
   ];
 
   barButtons: AppBarButton[] = [
@@ -38,19 +46,24 @@ export class AppBarComponent extends SubscriptionManagerComponent {
       onClick: this.login.bind(this),
       icon: 'pi pi-user',
       shouldHide: () => this.isLoggedIn,
-      class: "AppBar-rightBtn"
+      class: 'AppBar-rightBtn'
     },
-    { label: 'Register', onClick: this.register.bind(this), icon: 'pi pi-sign-out', shouldHide: () => this.isLoggedIn },
+    {
+      label: 'Register',
+      onClick: this.register.bind(this),
+      icon: 'pi pi-sign-out',
+      shouldHide: () => this.isLoggedIn
+    }
   ];
 
   constructor(public authService: AuthService) {
     super();
     this.authService.currentUser$
-    .pipe(takeUntil(this.destroy$))
-    .subscribe((user) => {
-      this.isLoggedIn = !!user;
-      this.currentUser = user;
-    })
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(user => {
+        this.isLoggedIn = !!user;
+        this.currentUser = user;
+      });
   }
 
   register() {

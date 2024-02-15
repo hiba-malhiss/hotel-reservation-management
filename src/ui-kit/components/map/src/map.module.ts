@@ -3,14 +3,8 @@ import { CommonModule } from '@angular/common';
 import { MapComponent } from './map.component';
 
 @NgModule({
-  declarations: [
-    MapComponent
-  ],
-  exports: [
-    MapComponent
-  ],
-  imports: [
-    CommonModule
-  ]
+  declarations: [MapComponent],
+  exports: [MapComponent],
+  imports: [CommonModule]
 })
-export class MapModule { }
+export class MapModule {}

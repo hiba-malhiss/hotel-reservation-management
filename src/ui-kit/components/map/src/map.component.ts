@@ -1,8 +1,14 @@
-import { Component, ElementRef, Input, OnChanges, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  Input,
+  OnChanges,
+  ViewChild
+} from '@angular/core';
 // @ts-ignore
 import * as mapboxgl from 'mapbox-gl';
-import { MapConfig, MapStyles, MarkerOptions } from "./map.modal";
-import { environment } from "../../../../environments/environment";
+import { MapConfig, MapStyles, MarkerOptions } from './map.modal';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'hrm-map',
@@ -39,7 +45,7 @@ export class MapComponent implements OnChanges {
     map.addControl(new mapboxgl.FullscreenControl());
 
     // Add markers
-    this.addMarkers(map)
+    this.addMarkers(map);
 
     // Add a NavigationControl control contains zoom buttons and a compass.
     const nav = new mapboxgl.NavigationControl({
@@ -61,8 +67,8 @@ export class MapComponent implements OnChanges {
             element: marker.element,
             draggable: false
           })
-          .setLngLat([marker.lng, marker.lat])
-          .addTo(map);
+            .setLngLat([marker.lng, marker.lat])
+            .addTo(map);
 
           if (marker.popupInfo) {
             this.addMarkerPopup(markerObj, marker, map, popup);
@@ -78,12 +84,19 @@ export class MapComponent implements OnChanges {
 
   addMarkerPopup(markerObj: any, marker: MarkerOptions, map: any, popup: any) {
     markerObj.getElement().addEventListener('mouseenter', () => {
-      popup.setLngLat([marker.lng, marker.lat])
-      .setHTML(
-        '<div class="Map-markerInfo">' + marker.popupInfo?.toLowerCase() + '</div>' +
-        '<div class="Map-markerInfo">[' + marker.lng + ',' + marker.lat + ']</div>'
-      )
-      .addTo(map);
+      popup
+        .setLngLat([marker.lng, marker.lat])
+        .setHTML(
+          '<div class="Map-markerInfo">' +
+            marker.popupInfo?.toLowerCase() +
+            '</div>' +
+            '<div class="Map-markerInfo">[' +
+            marker.lng +
+            ',' +
+            marker.lat +
+            ']</div>'
+        )
+        .addTo(map);
     });
 
     markerObj.getElement().addEventListener('mouseleave', () => {
@@ -93,8 +106,10 @@ export class MapComponent implements OnChanges {
 
   addMarkerConnections(marker: MarkerOptions, map: any) {
     marker?.connections?.forEach(connectionId => {
-      const connectedMarker = this.mapConfig?.markers?.find(m => m.id === connectionId);
-      const id = connectionId + '' + (marker?.id||'')
+      const connectedMarker = this.mapConfig?.markers?.find(
+        m => m.id === connectionId
+      );
+      const id = connectionId + '' + (marker?.id || '');
       if (connectedMarker) {
         const lineLayer = {
           id,

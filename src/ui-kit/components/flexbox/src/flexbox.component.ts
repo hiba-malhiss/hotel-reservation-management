@@ -10,13 +10,13 @@ import {
   FlexboxDirection,
   FlexboxJustify,
   FlexboxSpacing
-} from "./flexbox.constants";
+} from './flexbox.constants';
 
 @Component({
   selector: 'hrm-flexbox',
   styleUrls: ['./flexbox.component.scss'],
   templateUrl: './flexbox.component.html',
-  encapsulation: ViewEncapsulation.None,
+  encapsulation: ViewEncapsulation.None
 })
 export class FlexboxComponent implements OnChanges, OnInit {
   @Input()

@@ -1,18 +1,27 @@
-import { Component, HostListener, Input, OnInit, ViewChild } from '@angular/core';
-import { ReserveManagementService } from "../../../services/reserve-management/reserve-management.service";
-import * as moment from "moment";
-import { Room } from "../../../components/room-card/room.modal";
+import {
+  Component,
+  HostListener,
+  Input,
+  OnInit,
+  ViewChild
+} from '@angular/core';
+import { ReserveManagementService } from '../../../services/reserve-management/reserve-management.service';
+import * as moment from 'moment';
+import { Room } from '../../../components/room-card/room.modal';
 import { Calendar } from 'primeng/calendar';
-import { SubscriptionManagerComponent } from "../../../components/subscription-manager/subscription-manager.component";
-import { takeUntil } from "rxjs";
+import { SubscriptionManagerComponent } from '../../../components/subscription-manager/subscription-manager.component';
+import { takeUntil } from 'rxjs';
 
 @Component({
   selector: 'hrm-reserve-calendar',
   templateUrl: './reserve-calendar.component.html',
   styleUrls: ['./reserve-calendar.component.scss']
 })
-export class ReserveCalendarComponent extends SubscriptionManagerComponent implements OnInit {
-  disabledDates: Date[] = []
+export class ReserveCalendarComponent
+  extends SubscriptionManagerComponent
+  implements OnInit
+{
+  disabledDates: Date[] = [];
   // @ts-ignore
   minEnabledDate: Date;
   // @ts-ignore
@@ -35,10 +44,10 @@ export class ReserveCalendarComponent extends SubscriptionManagerComponent imple
 
   ngOnInit(): void {
     this.reserveService.selectedRoom$
-    .pipe(takeUntil(this.destroy$),)
-    .subscribe((room) => {
-      this.setDisabledDates(room)
-    });
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(room => {
+        this.setDisabledDates(room);
+      });
   }
 
   // p-calender doesn't accept enabled dates it only accept disabled dates
@@ -58,7 +67,7 @@ export class ReserveCalendarComponent extends SubscriptionManagerComponent imple
     while (start.isBefore(end, 'day')) {
       let date = start.clone();
       if (!isEnabledDate(date)) {
-        this.disabledDates.push(date.toDate())
+        this.disabledDates.push(date.toDate());
       }
       start.add(1, 'day');
     }
@@ -67,7 +76,9 @@ export class ReserveCalendarComponent extends SubscriptionManagerComponent imple
     this.maxEnabledDate = maxEnabled.toDate();
     //workaround: the calendar causes the page to scroll into the calendar view when we set the defaultValue
     // so prevent scrolling then enables it after setting the defaultValue by 1sec
-    setTimeout(()=>{this.disableScroll = false;}, 1000)
+    setTimeout(() => {
+      this.disableScroll = false;
+    }, 1000);
   }
 
   // p-calender allows selecting a date range that includes disabled dates
@@ -75,10 +86,12 @@ export class ReserveCalendarComponent extends SubscriptionManagerComponent imple
   onSelect(value: [Date, Date]) {
     this.reserveService.selectedReservationDate = value;
     if (value[0] && value[1]) {
-      let selectedStartDate = moment(value[0])
-      let selectedEndDate = moment(value[1])
+      let selectedStartDate = moment(value[0]);
+      let selectedEndDate = moment(value[1]);
       const isDisabledDates = (date: moment.Moment) =>
-        this.disabledDates.some(disabledDate => moment(disabledDate).isSame(date, 'day'));
+        this.disabledDates.some(disabledDate =>
+          moment(disabledDate).isSame(date, 'day')
+        );
 
       while (selectedStartDate.isBefore(selectedEndDate, 'day')) {
         let date = selectedStartDate.clone();

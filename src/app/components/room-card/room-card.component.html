@@ -1,16 +1,23 @@
-<p-card (click)="navigateToRoomDetails()"
-        [header]="'Room ' + room.roomNumber"
-        [subheader]="room.type"
-        class="RoomCard"
+<p-card
+  (click)="navigateToRoomDetails()"
+  [header]="'Room ' + room.roomNumber"
+  [subheader]="room.type"
+  class="RoomCard"
 >
   <ng-template pTemplate="header">
-    <img [src]="room.image" alt="room" class="RoomCard-img">
+    <img [src]="room.image" alt="room" class="RoomCard-img" />
   </ng-template>
   <ng-template pTemplate="footer">
     <hrm-flexbox align="center">
-      <span class="RoomCard-price">${{room.price}}</span>
+      <span class="RoomCard-price">${{ room.price }}</span>
       <span style="margin-right: auto">&nbsp; night</span>
-      <button pButton label="Check" class="p-button-sm" icon="pi-angle-right pi" iconPos="right"></button>
+      <button
+        pButton
+        label="Check"
+        class="p-button-sm"
+        icon="pi-angle-right pi"
+        iconPos="right"
+      ></button>
     </hrm-flexbox>
   </ng-template>
 </p-card>

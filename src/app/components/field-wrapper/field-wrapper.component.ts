@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormControl } from "@angular/forms";
-import { ValidationErrorMessages } from "./validation-error-messages";
+import { FormControl } from '@angular/forms';
+import { ValidationErrorMessages } from './validation-error-messages';
 
 @Component({
   selector: 'hrm-field-wrapper',
@@ -14,10 +14,9 @@ export class FieldWrapperComponent implements OnInit {
   @Input()
   label!: string;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   getErrorMessage(): string {
     if (this.control.errors) {

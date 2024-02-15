@@ -1,20 +1,22 @@
 <hrm-flexbox direction="vertical" spacing="small" class="RoomDetailsView">
-  <hrm-spinner-overlay [isLoading]="isLoadingRoomDetails || isReservingRoom"></hrm-spinner-overlay>
-  <div class="RoomDetailsView-title">Room {{room?.roomNumber}}</div>
+  <hrm-spinner-overlay
+    [isLoading]="isLoadingRoomDetails || isReservingRoom"
+  ></hrm-spinner-overlay>
+  <div class="RoomDetailsView-title">Room {{ room?.roomNumber }}</div>
   <div class="RoomDetailsView-img">
-    <div [ngStyle]="{'background-image': 'url(' + room?.image + ')'}"></div>
-    <div [ngStyle]="{'background-image': 'url(' + room?.image + ')'}"></div>
-    <div [ngStyle]="{'background-image': 'url(' + room?.image + ')'}"></div>
+    <div [ngStyle]="{ 'background-image': 'url(' + room?.image + ')' }"></div>
+    <div [ngStyle]="{ 'background-image': 'url(' + room?.image + ')' }"></div>
+    <div [ngStyle]="{ 'background-image': 'url(' + room?.image + ')' }"></div>
   </div>
   <hrm-flexbox spacing="xlarge" justify="center">
-    <hrm-flexbox spacing="medium" direction="vertical" style="flex:1">
-      <div class="RoomDetailsView-subHeader">{{room?.type}}</div>
+    <hrm-flexbox spacing="medium" direction="vertical" style="flex: 1">
+      <div class="RoomDetailsView-subHeader">{{ room?.type }}</div>
       <p-divider></p-divider>
       <span class="RoomDetailsView-subHeader">What this room offers</span>
       <div class="RoomDetailsView-amenities">
         <hrm-flexbox spacing="small" *ngFor="let amenity of room?.amenities">
           <i [class]="AmenitiesIconMapper[amenity]"></i>
-          <span>{{amenity}}</span>
+          <span>{{ amenity }}</span>
         </hrm-flexbox>
       </div>
       <p-divider></p-divider>

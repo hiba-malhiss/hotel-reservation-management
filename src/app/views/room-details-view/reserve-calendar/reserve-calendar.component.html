@@ -1,16 +1,16 @@
 <p-calendar
-      #calendar
-      [inline]="inline"
-      selectionMode="range"
-      [disabledDates]="disabledDates"
-      [minDate]="minEnabledDate"
-      [maxDate]="maxEnabledDate"
-      [defaultDate]="minEnabledDate"
-      [readonlyInput]="true"
-      [(ngModel)]="reserveService.selectedReservationDate"
-      (onSelect)="onSelect(calendar.value)"
-      [style]="{'width':fullWidth?'100%':'auto'}"
-      [inputStyle]="{'width':fullWidth?'100%':'auto'}"
-      placeholder="Select date range"
+  #calendar
+  [inline]="inline"
+  selectionMode="range"
+  [disabledDates]="disabledDates"
+  [minDate]="minEnabledDate"
+  [maxDate]="maxEnabledDate"
+  [defaultDate]="minEnabledDate"
+  [readonlyInput]="true"
+  [(ngModel)]="reserveService.selectedReservationDate"
+  (onSelect)="onSelect(calendar.value)"
+  [style]="{ width: fullWidth ? '100%' : 'auto' }"
+  [inputStyle]="{ width: fullWidth ? '100%' : 'auto' }"
+  placeholder="Select date range"
 >
 </p-calendar>

@@ -1,24 +1,31 @@
 import { Injectable } from '@angular/core';
-import * as moment from "moment";
-import { BehaviorSubject, Observable, throwError } from "rxjs";
-import { AuthService } from "../auth/auth.service";
-import { Reservation, UserReservationResponse } from "../../modals/roomsData.modal";
-import { addRoomsReservations, deleteRoomsReservations } from "../room/rooms-mock-data";
-import { checkIfValidReservation, getUserReservations } from "../room/room-backend.util";
-import { Room } from "../../components/room-card/room.modal";
+import * as moment from 'moment';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
+import { AuthService } from '../auth/auth.service';
+import {
+  Reservation,
+  UserReservationResponse
+} from '../../modals/roomsData.modal';
+import {
+  addRoomsReservations,
+  deleteRoomsReservations
+} from '../room/rooms-mock-data';
+import {
+  checkIfValidReservation,
+  getUserReservations
+} from '../room/room-backend.util';
+import { Room } from '../../components/room-card/room.modal';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ReserveManagementService {
   selectedReservationDate?: [Date, Date] | null;
-  selectedRoom$ = new BehaviorSubject<Room | null>(null)
+  selectedRoom$ = new BehaviorSubject<Room | null>(null);
   numberOfDays?: number;
   totalCost?: number;
 
-  constructor(private authService: AuthService) {
-  }
-
+  constructor(private authService: AuthService) {}
 
   resetReservationDetails() {
     this.selectedRoom$.next(null);
@@ -45,9 +52,8 @@ export class ReserveManagementService {
     }
 
     // use big decimal for fractions
-    this.totalCost = this.numberOfDays * this.selectedRoom$.value!.price
+    this.totalCost = this.numberOfDays * this.selectedRoom$.value!.price;
   }
-
 
   onReserveRoom(): Observable<boolean> {
     const user = this.authService.currentUser$.value;
@@ -58,48 +64,57 @@ export class ReserveManagementService {
         startDate: moment(this.selectedReservationDate[0]).format('YYYY-MM-DD'),
         endDate: moment(this.selectedReservationDate[1]).format('YYYY-MM-DD'),
         guestName: user?.name
-      }
+      };
 
-      return this.reserveRoom(payload)
+      return this.reserveRoom(payload);
     } else {
       // deprecated no replacement, we need to throw inside observable
-      return throwError("Invalid response");
+      return throwError('Invalid response');
     }
   }
 
   private reserveRoom(payload: Reservation): Observable<boolean> {
-    return new Observable((observer) => {
+    return new Observable(observer => {
       setTimeout(() => {
         if (checkIfValidReservation(payload)) {
           addRoomsReservations(payload);
           observer.next(true);
           observer.complete();
         } else {
-          observer.error("");
+          observer.error('');
           observer.complete();
         }
       }, 800);
-    })
+    });
   }
 
-  getUserReservation(page: number, pageSize: number): Observable<UserReservationResponse> {
-    return new Observable((observer) => {
+  getUserReservation(
+    page: number,
+    pageSize: number
+  ): Observable<UserReservationResponse> {
+    return new Observable(observer => {
       setTimeout(() => {
-        let reservations = getUserReservations(this.authService.currentUser$.value!.name, page, pageSize);
+        let reservations = getUserReservations(
+          this.authService.currentUser$.value!.name,
+          page,
+          pageSize
+        );
         observer.next(reservations);
         observer.complete();
       }, 800);
-    })
+    });
   }
 
   // this should change the reservation status not delete the reservation
-  deleteUserReservation(reservationId: number): Observable<UserReservationResponse> {
-    return new Observable((observer) => {
+  deleteUserReservation(
+    reservationId: number
+  ): Observable<UserReservationResponse> {
+    return new Observable(observer => {
       setTimeout(() => {
         deleteRoomsReservations(reservationId);
         observer.next();
         observer.complete();
       }, 800);
-    })
+    });
   }
 }

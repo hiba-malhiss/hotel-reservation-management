@@ -1,10 +1,15 @@
 import { Component, Input } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { DialogService } from "primeng/dynamicdialog";
-import { AuthService } from "../../services/auth/auth.service";
-import { catchError, takeUntil } from "rxjs";
-import { MessageService } from "primeng/api";
-import { SubscriptionManagerComponent } from "../subscription-manager/subscription-manager.component";
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators
+} from '@angular/forms';
+import { DialogService } from 'primeng/dynamicdialog';
+import { AuthService } from '../../services/auth/auth.service';
+import { catchError, takeUntil } from 'rxjs';
+import { MessageService } from 'primeng/api';
+import { SubscriptionManagerComponent } from '../subscription-manager/subscription-manager.component';
 
 @Component({
   selector: 'hrm-signup',
@@ -17,10 +22,12 @@ export class SignupComponent extends SubscriptionManagerComponent {
   @Input()
   isVisible: boolean = false;
 
-  constructor(private dialogService: DialogService,
-              private messageService: MessageService,
-              private fb: FormBuilder,
-              private authService: AuthService) {
+  constructor(
+    private dialogService: DialogService,
+    private messageService: MessageService,
+    private fb: FormBuilder,
+    private authService: AuthService
+  ) {
     super();
     this.signupForm = this.fb.group({
       name: ['', Validators.required],
@@ -28,9 +35,11 @@ export class SignupComponent extends SubscriptionManagerComponent {
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
 
-    this.authService.isSignUpVisible$.pipe(takeUntil(this.destroy$)).subscribe(val => {
-      this.isVisible = val;
-    })
+    this.authService.isSignUpVisible$
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(val => {
+        this.isVisible = val;
+      });
   }
 
   getControl(filedName: string) {
@@ -44,18 +53,25 @@ export class SignupComponent extends SubscriptionManagerComponent {
 
   onSubmit() {
     if (this.signupForm.valid) {
-      this.authService.register(
-        this.signupForm.value.name,
-        this.signupForm.value.email,
-        this.signupForm.value.password)
-      .pipe(
-        catchError((error) => {
-          this.messageService.add({ severity: 'error', summary: 'Error', detail: "Email/Name already exist" });
-          throw error;
-        }))
-      .subscribe(() => {
-        this.hideSignUpDialog();
-      })
+      this.authService
+        .register(
+          this.signupForm.value.name,
+          this.signupForm.value.email,
+          this.signupForm.value.password
+        )
+        .pipe(
+          catchError(error => {
+            this.messageService.add({
+              severity: 'error',
+              summary: 'Error',
+              detail: 'Email/Name already exist'
+            });
+            throw error;
+          })
+        )
+        .subscribe(() => {
+          this.hideSignUpDialog();
+        });
     }
   }
 

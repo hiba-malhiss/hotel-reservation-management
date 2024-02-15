@@ -13,11 +13,11 @@ export interface MapConfig {
   centerLatitude?: number;
   initialZoom?: number;
   markers?: MarkerOptions[];
-  style?: 'street' | 'outdoors' | 'satellite'
+  style?: 'street' | 'outdoors' | 'satellite';
 }
 
 export const MapStyles = {
   street: 'mapbox://styles/mapbox/streets-v12',
   outdoors: 'mapbox://styles/mapbox/outdoors-v12',
-  satellite: 'mapbox://styles/mapbox/satellite-v9',
+  satellite: 'mapbox://styles/mapbox/satellite-v9'
 };
