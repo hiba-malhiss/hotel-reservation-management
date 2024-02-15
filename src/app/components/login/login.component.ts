@@ -3,14 +3,15 @@ import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms"
 import { DialogService } from "primeng/dynamicdialog";
 import { MessageService } from "primeng/api";
 import { AuthService } from "../../services/auth.service";
-import { catchError } from "rxjs";
+import { catchError, takeUntil } from "rxjs";
+import { SubscriptionManagerComponent } from "../subscription-manager/subscription-manager.component";
 
 @Component({
   selector: 'hrm-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent {
+export class LoginComponent extends SubscriptionManagerComponent{
   loginForm: FormGroup;
 
   @Input()
@@ -20,12 +21,13 @@ export class LoginComponent {
               private messageService: MessageService,
               private fb: FormBuilder,
               private authService: AuthService) {
+    super();
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
 
-    this.authService.isLoginVisible$.subscribe(val => {
+    this.authService.isLoginVisible$.pipe(takeUntil(this.destroy$)).subscribe(val => {
       this.isVisible = val;
     })
   }
@@ -44,10 +46,13 @@ export class LoginComponent {
       this.authService.login(
         this.loginForm.value.email,
         this.loginForm.value.password)
-      .pipe(catchError((error) => {
-        this.messageService.add({ severity: 'error', summary: 'Error', detail: "User doesn't exist" });
-        throw error;
-      }))
+      .pipe(
+        takeUntil(this.destroy$),
+        catchError((error) => {
+          this.messageService.add({ severity: 'error', summary: 'Error', detail: "User doesn't exist" });
+          throw error;
+        })
+      )
       .subscribe(() => {
         this.hideLoginDialog();
       })

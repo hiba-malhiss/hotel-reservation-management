@@ -1,15 +1,16 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Room } from "../../components/room-card/room.modal";
 import { RoomsService } from "../../services/rooms.service";
-import { BehaviorSubject } from "rxjs";
+import { BehaviorSubject, takeUntil } from "rxjs";
 import { Paginator } from "primeng/paginator";
+import { SubscriptionManagerComponent } from "../../components/subscription-manager/subscription-manager.component";
 
 @Component({
   selector: 'app-rooms-view',
   templateUrl: './rooms-view.component.html',
   styleUrls: ['./rooms-view.component.scss']
 })
-export class RoomsViewComponent implements OnInit {
+export class RoomsViewComponent extends SubscriptionManagerComponent implements OnInit {
   rowsPerPage = 10;
   totalRooms = 0;
   currentPage = 1;
@@ -22,10 +23,11 @@ export class RoomsViewComponent implements OnInit {
   paginator?: Paginator;
 
   constructor(private roomsService: RoomsService) {
+    super();
   }
 
   ngOnInit(): void {
-    this.filters$.subscribe(() => {
+    this.filters$.pipe(takeUntil(this.destroy$),).subscribe(() => {
       if (this.paginator) {
         // reset pagination on filter change
         this.paginator.changePage(0);

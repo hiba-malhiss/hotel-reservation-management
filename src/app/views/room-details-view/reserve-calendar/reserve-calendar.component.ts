@@ -3,13 +3,15 @@ import { ReserveManagementService } from "../../../services/reserve-management.s
 import * as moment from "moment";
 import { Room } from "../../../components/room-card/room.modal";
 import { Calendar } from 'primeng/calendar';
+import { SubscriptionManagerComponent } from "../../../components/subscription-manager/subscription-manager.component";
+import { takeUntil } from "rxjs";
 
 @Component({
   selector: 'hrm-reserve-calendar',
   templateUrl: './reserve-calendar.component.html',
   styleUrls: ['./reserve-calendar.component.scss']
 })
-export class ReserveCalendarComponent implements OnInit {
+export class ReserveCalendarComponent extends SubscriptionManagerComponent implements OnInit {
   disabledDates: Date[] = []
   // @ts-ignore
   minEnabledDate: Date;
@@ -28,10 +30,13 @@ export class ReserveCalendarComponent implements OnInit {
   fullWidth: boolean = false;
 
   constructor(public reserveService: ReserveManagementService) {
+    super();
   }
 
   ngOnInit(): void {
-    this.reserveService.selectedRoom$.subscribe((room) => {
+    this.reserveService.selectedRoom$
+    .pipe(takeUntil(this.destroy$),)
+    .subscribe((room) => {
       this.setDisabledDates(room)
     });
   }

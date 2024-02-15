@@ -12,7 +12,7 @@ import { AttractionsViewModule } from "./views/attractions-view/attractions-view
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,

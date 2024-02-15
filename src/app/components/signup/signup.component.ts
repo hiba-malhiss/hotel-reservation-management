@@ -2,15 +2,16 @@ import { Component, Input } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { DialogService } from "primeng/dynamicdialog";
 import { AuthService } from "../../services/auth.service";
-import { catchError } from "rxjs";
+import { catchError, takeUntil } from "rxjs";
 import { MessageService } from "primeng/api";
+import { SubscriptionManagerComponent } from "../subscription-manager/subscription-manager.component";
 
 @Component({
   selector: 'hrm-signup',
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.scss']
 })
-export class SignupComponent {
+export class SignupComponent extends SubscriptionManagerComponent {
   signupForm: FormGroup;
 
   @Input()
@@ -20,13 +21,14 @@ export class SignupComponent {
               private messageService: MessageService,
               private fb: FormBuilder,
               private authService: AuthService) {
+    super();
     this.signupForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
 
-    this.authService.isSignUpVisible$.subscribe(val => {
+    this.authService.isSignUpVisible$.pipe(takeUntil(this.destroy$)).subscribe(val => {
       this.isVisible = val;
     })
   }
@@ -46,10 +48,12 @@ export class SignupComponent {
         this.signupForm.value.name,
         this.signupForm.value.email,
         this.signupForm.value.password)
-      .pipe(catchError((error) => {
-        this.messageService.add({ severity: 'error', summary: 'Error', detail: "Email already exist" });
-        throw error;
-      }))
+      .pipe(
+        takeUntil(this.destroy$),
+        catchError((error) => {
+          this.messageService.add({ severity: 'error', summary: 'Error', detail: "Email already exist" });
+          throw error;
+        }))
       .subscribe(() => {
         this.hideSignUpDialog();
       })

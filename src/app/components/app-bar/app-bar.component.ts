@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { AuthService, User } from "../../services/auth.service";
+import { SubscriptionManagerComponent } from "../subscription-manager/subscription-manager.component";
+import { takeUntil } from "rxjs";
 
 interface AppBarButton {
   label: string,
@@ -15,7 +17,7 @@ interface AppBarButton {
   templateUrl: './app-bar.component.html',
   styleUrls: ['./app-bar.component.scss']
 })
-export class AppBarComponent {
+export class AppBarComponent extends SubscriptionManagerComponent {
   isLoggedIn: boolean = false;
   currentUser: User | null = null;
 
@@ -30,7 +32,7 @@ export class AppBarComponent {
     { label: 'Attractions', routerLink: '/attractions' },
   ];
 
-  barButtons : AppBarButton[]= [
+  barButtons: AppBarButton[] = [
     {
       label: 'Login',
       onClick: this.login.bind(this),
@@ -42,7 +44,10 @@ export class AppBarComponent {
   ];
 
   constructor(public authService: AuthService) {
-    this.authService.currentUser$.subscribe((user) => {
+    super();
+    this.authService.currentUser$
+    .pipe(takeUntil(this.destroy$))
+    .subscribe((user) => {
       this.isLoggedIn = !!user;
       this.currentUser = user;
     })

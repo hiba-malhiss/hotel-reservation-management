@@ -2,7 +2,8 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { RoomsService } from "../../../services/rooms.service";
 import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
 import { FilterAndSortPayload, RoomsFiltersMetaData } from "../../../modals/roomsData.modal";
-import { debounceTime } from "rxjs";
+import { debounceTime, takeUntil } from "rxjs";
+import { SubscriptionManagerComponent } from "../../../components/subscription-manager/subscription-manager.component";
 
 interface FilterOption {
   key: string,
@@ -15,7 +16,7 @@ interface FilterOption {
   templateUrl: './room-filters-sidebar.component.html',
   styleUrls: ['./room-filters-sidebar.component.scss']
 })
-export class RoomFiltersSidebarComponent implements OnInit {
+export class RoomFiltersSidebarComponent extends SubscriptionManagerComponent implements OnInit {
   sortBy?: string;
   filterBy = {};
   filterByOptions: FilterOption[] = [];
@@ -31,6 +32,7 @@ export class RoomFiltersSidebarComponent implements OnInit {
   ]
 
   constructor(private roomsService: RoomsService, private formBuilder: FormBuilder) {
+    super();
   }
 
   ngOnInit(): void {
@@ -39,7 +41,7 @@ export class RoomFiltersSidebarComponent implements OnInit {
     });
 
     this.filterForm.valueChanges
-    .pipe(debounceTime(300))
+    .pipe(takeUntil(this.destroy$),debounceTime(300))
     .subscribe((formValue) =>
       this.onFilterOrSortChange.next(formValue));
 
