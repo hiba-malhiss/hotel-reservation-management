@@ -2,7 +2,10 @@
   <hrm-flexbox spacing="medium" direction="vertical">
     <span class="ReserveCard-price">${{reserveService.selectedRoom?.price}} night</span>
     <span>Select check-in, check-out dates</span>
-    <hrm-reserve-calendar [fullWidth]="true"></hrm-reserve-calendar>
+    <div>
+      <hrm-reserve-calendar [fullWidth]="true"></hrm-reserve-calendar>
+      <small class="ReserveCard-infoMessage">Make sure to select a date range</small>
+    </div>
     <button pButton label="Reserve"
             (click)="reserve.emit()"
             [disabled]="!reserveService.numberOfDays"
