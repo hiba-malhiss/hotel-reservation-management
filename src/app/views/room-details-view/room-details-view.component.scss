@@ -32,13 +32,13 @@
 
   &-available {
     font-size: 12px;
-    margin-top: 8px !important;
+    margin-top: $hrm-spacing-12px !important;
     color: $hrm-gray-color;
   }
 
   &-notAvail {
     font-size: 12px;
-    margin-top: 8px !important;
+    margin-top: $hrm-spacing-12px !important;
     color: $hrm-color-error;
   }
 
