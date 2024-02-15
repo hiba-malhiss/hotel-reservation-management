@@ -68,7 +68,7 @@ export class RoomDetailsViewComponent extends SubscriptionManagerComponent imple
           summary: 'Reserves Successfully!',
           detail: "Your reserve-management is completed!"
         });
-        this.router.navigateByUrl("/") //todo: navigate to bookings page
+        this.router.navigateByUrl("/reservations");
       });
     } else {
       this.authService.isLoginVisible$.next(true);

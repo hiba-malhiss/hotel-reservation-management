@@ -1,27 +1,42 @@
-# HotelReservationManagement
+# Room Reservation Site (Angular)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.10.
+This repository contains the source code for a Room Reservation Site built using Angular. This application allows users to view available rooms, make reservations, and manage their reservations.
 
-## Development server
+## Features
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- **View Available Rooms**: Users can browse through the list of available rooms.
+- **View Hotel Attractions**: Users can browse tho hotel map including the attractions it contains.
+- **Make Reservations**: Users can reserve a room for a specific date range.
+- **Manage Reservations**: Users can view and cancel their existing reservations.
 
-## Code scaffolding
+## Getting Started
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+To get a local copy of this project up and running, follow these steps:
 
-## Build
+### Installation
+
+1. Clone the repository to your local machine:
+
+   ```bash
+   git clone https://github.com/hiba-malhiss/hotel-reservation-management.git
+   ```
+
+2. Navigate to the project directory:
+
+   ```bash
+   cd hotel-reservation-management
+   ```
+
+3. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+### Development Server
+
+Run `ng serve` for a development server. Navigate to `http://localhost:4200/` in your browser to view the application.
+
+### Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.

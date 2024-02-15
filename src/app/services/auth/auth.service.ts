@@ -3,6 +3,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 // @ts-ignore
 import * as bcrypt from 'bcryptjs';
 import { capitalizeFirstLetter } from "../../../ui-kit/utils/string-utils";
+import { Router } from "@angular/router";
 
 export interface User {
   name: string;
@@ -20,7 +21,7 @@ export class AuthService {
   isSignUpVisible$ = new BehaviorSubject(false);
   isLoginVisible$ = new BehaviorSubject(false);
 
-  constructor() {
+  constructor(private router: Router,) {
   }
 
   public currentUser$ = new BehaviorSubject<User | null>(null);
@@ -65,6 +66,7 @@ export class AuthService {
   public logout(): void {
     localStorage.removeItem(USER_KEY);
     this.currentUser$.next(null);
+    this.router.navigateByUrl('/')
   }
 
   public register(
@@ -81,7 +83,7 @@ export class AuthService {
     const users = localStorage.getItem(USERS_LIST_KEY);
     if (users) {
       const list = JSON.parse(users);
-      const emailExist = list.find((usr: User) => usr.email === email);
+      const emailExist = list.find((usr: User) => usr.email === email || usr.name == name);
       if (emailExist) {
         return new Observable(observer => {
           observer.error('Email already exists');

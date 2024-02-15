@@ -231,6 +231,13 @@ export function addRoomsReservations(reservations: Reservation) {
   localStorage.setItem(ROOMS_KEY, JSON.stringify(data))
 }
 
+export function deleteRoomsReservations(reservationId: number) {
+  const roomsData = localStorage.getItem(ROOMS_KEY);
+  let data = roomsData ? JSON.parse(roomsData): roomsMockData;
+  data.reservations = data.reservations.filter((res: Reservation) => res.id != reservationId);
+  localStorage.setItem(ROOMS_KEY, JSON.stringify(data))
+}
+
 export const roomsFilterMetaMockData = {
   roomTypes: ['Standard', 'Deluxe'],
   amenities: [

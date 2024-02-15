@@ -1,4 +1,10 @@
-import { FilterAndSortPayload, RoomsData, Reservation } from "../../modals/roomsData.modal";
+import {
+  FilterAndSortPayload,
+  RoomsData,
+  Reservation,
+  UserReservation,
+  UserReservationResponse
+} from "../../modals/roomsData.modal";
 import { getRoomsMockData } from "./rooms-mock-data";
 import { Room } from "../../components/room-card/room.modal";
 import * as moment from "moment";
@@ -80,7 +86,7 @@ export function checkIfValidReservation(reservation: Reservation): boolean {
     const endDate = moment(reservation.endDate);
     const list = room.availableDates?.map(date => date.format('YYYY-MM-DD')) || [];
     while (startDate.isSameOrBefore(endDate, 'day')) {
-      if(!list.includes(startDate.format('YYYY-MM-DD'))){
+      if (!list.includes(startDate.format('YYYY-MM-DD'))) {
         return false;
       }
       startDate.add(1, 'day');
@@ -88,4 +94,26 @@ export function checkIfValidReservation(reservation: Reservation): boolean {
     return true;
   }
   return false;
+}
+
+export function getUserReservations(userName: string, page: number, pageSize: number): UserReservationResponse {
+  const roomsData = getRoomsMockData()
+  let userReservations = roomsData.reservations.filter((reservation: Reservation) => reservation.guestName == userName);
+
+  const filteredUserReservations = userReservations.map((reservation: Reservation) => {
+    const room = roomsData.rooms.find((room: Room) => room.id === reservation.roomId);
+    const currentDate = moment();
+    const isPastReservation = moment(reservation.endDate).isBefore(currentDate, 'day');
+
+    return ({
+      ...reservation,
+      image: room.image,
+      roomNumber: room.roomNumber,
+      status: isPastReservation ? 'Completed' : 'In Progress'
+    }) as UserReservation
+  });
+
+  const startIndex = (page - 1) * pageSize;
+  const endIndex = startIndex + pageSize;
+  return { totalRecords: userReservations.length, userReservations: filteredUserReservations.slice(startIndex, endIndex) };
 }

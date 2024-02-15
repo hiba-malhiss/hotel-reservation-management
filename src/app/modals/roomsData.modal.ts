@@ -28,6 +28,16 @@ export interface Reservation {
   guestName: string;
 }
 
+export type UserReservation = Reservation & {
+  roomNumber?: number;
+  image?: string;
+}
+
+export interface UserReservationResponse {
+  totalRecords: number;
+  userReservations: UserReservation[];
+}
+
 export const AmenitiesIconMapper: { [key: string]: string } = {
   "Wifi": "fas fa-wifi",
   "Kitchen": "fas fa-utensils",

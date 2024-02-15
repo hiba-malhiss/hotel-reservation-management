@@ -4,6 +4,7 @@ import { HomeViewComponent } from "./views/home-view/home-view.component";
 import { RoomsViewComponent } from "./views/rooms-view/rooms-view.component";
 import { RoomDetailsViewComponent } from "./views/room-details-view/room-details-view.component";
 import { AttractionsViewComponent } from "./views/attractions-view/attractions-view.component";
+import { ManageReservationsViewComponent } from "./views/manage-reservations-view/manage-reservations-view.component";
 
 const routes: Routes = [
   {
@@ -26,6 +27,10 @@ const routes: Routes = [
   {
     path: 'attractions',
     component: AttractionsViewComponent
+  },
+  {
+    path: 'reservations',
+    component: ManageReservationsViewComponent
   }
 ];
 

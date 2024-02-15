@@ -1,0 +1,21 @@
+@import "../../../ui-kit/styling/constants";
+
+.ManageReservations {
+  display: block;
+  padding: $page-content-padding;
+  position: relative;
+
+  &-img {
+    border-radius: 6px;
+
+  }
+
+  &-title {
+    font-size: 34px;
+    font-weight: bold;
+  }
+
+  td {
+    vertical-align: middle;
+  }
+}

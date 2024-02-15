@@ -9,6 +9,7 @@ import { RoomsViewModule } from "./views/rooms-view/rooms-view.module";
 import { RoomDetailsViewModule } from "./views/room-details-view/room-details-view.module";
 import { ToastModule } from "primeng/toast";
 import { AttractionsViewModule } from "./views/attractions-view/attractions-view.module";
+import { ManageReservationsViewModule } from "./views/manage-reservations-view/manage-reservations-view.module";
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { AttractionsViewModule } from "./views/attractions-view/attractions-view
     RoomDetailsViewModule,
     AppBarModule,
     AttractionsViewModule,
+    ManageReservationsViewModule,
     ToastModule
   ],
   providers: [],

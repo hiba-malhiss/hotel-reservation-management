@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import * as moment from "moment";
 import { BehaviorSubject, Observable, throwError } from "rxjs";
 import { AuthService } from "../auth/auth.service";
-import { Reservation } from "../../modals/roomsData.modal";
-import { addRoomsReservations } from "../room/rooms-mock-data";
-import { checkIfValidReservation } from "../room/room-backend.util";
+import { Reservation, UserReservationResponse } from "../../modals/roomsData.modal";
+import { addRoomsReservations, deleteRoomsReservations } from "../room/rooms-mock-data";
+import { checkIfValidReservation, getUserReservations } from "../room/room-backend.util";
 import { Room } from "../../components/room-card/room.modal";
 
 @Injectable({
@@ -81,4 +81,24 @@ export class ReserveManagementService {
     })
   }
 
+  getUserReservation(page: number, pageSize: number): Observable<UserReservationResponse> {
+    return new Observable((observer) => {
+      setTimeout(() => {
+        let reservations = getUserReservations(this.authService.currentUser$.value!.name, page, pageSize);
+        observer.next(reservations);
+        observer.complete();
+      }, 800);
+    })
+  }
+
+  // this should change the reservation status not delete the reservation
+  deleteUserReservation(reservationId: number): Observable<UserReservationResponse> {
+    return new Observable((observer) => {
+      setTimeout(() => {
+        deleteRoomsReservations(reservationId);
+        observer.next();
+        observer.complete();
+      }, 800);
+    })
+  }
 }

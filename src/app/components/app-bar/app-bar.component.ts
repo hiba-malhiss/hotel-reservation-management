@@ -22,12 +22,12 @@ export class AppBarComponent extends SubscriptionManagerComponent {
   currentUser: User | null = null;
 
   userMenuItems: MenuItem [] = [
-    { label: 'Bookings', icon: 'pi pi-calendar', routerLink: '/' },
+    { label: 'Reservations', icon: 'pi pi-calendar', routerLink: '/reservations' },
     { label: 'Sign Out', icon: 'pi pi-sign-out', command: () => this.authService.logout() }
   ]
 
   items: MenuItem [] = [
-    { label: 'Home', routerLink: '/' },
+    { label: 'Home', routerLink: '/home' },
     { label: 'Rooms', routerLink: '/rooms' },
     { label: 'Attractions', routerLink: '/attractions' },
   ];

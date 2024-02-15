@@ -1,0 +1,41 @@
+<hrm-flexbox class="ManageReservations" direction="vertical" spacing="large">
+  <hrm-spinner-overlay [isLoading]="isLoadingReservations"></hrm-spinner-overlay>
+  <div class="ManageReservations-title">Reservations</div>
+  <p-table #table
+           [value]="userReservations"
+           [paginator]="true"
+           [lazy]="true"
+           [rows]="pageSize"
+           [totalRecords]="totalRecords"
+           (onLazyLoad)="fetchReservations($event)">
+    <ng-template pTemplate="header">
+      <tr>
+        <th *ngFor="let col of columns">{{col.header}}</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-room>
+      <tr>
+        <td>
+          <img [src]="room.image"
+               width="64"
+               height="64"
+               class="ManageReservations-img"
+               [alt]="room.roomNumber"
+          >
+        </td>
+        <td>{{room.roomNumber}}</td>
+        <td>{{room.startDate}}</td>
+        <td>{{room.endDate}}</td>
+        <td>{{room.status}}</td>
+        <td>
+          <button pButton type="button"
+                  label="Cancel"
+                  (click)="onCancelReservation(room)"
+                  [disabled]="room.status === RoomStatusMapper.Completed"
+                  class="p-button-danger p-button-text"></button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</hrm-flexbox>
+<p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>
