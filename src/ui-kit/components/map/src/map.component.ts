@@ -1,7 +1,7 @@
 import { Component, ElementRef, Input, OnChanges, ViewChild } from '@angular/core';
 // @ts-ignore
 import * as mapboxgl from 'mapbox-gl';
-import { MapConfig, MapStyles, MarkerOptions } from "./map.modals";
+import { MapConfig, MapStyles, MarkerOptions } from "./map.modal";
 
 @Component({
   selector: 'hrm-map',

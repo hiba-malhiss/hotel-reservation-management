@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AttractionsService } from "../../services/attractions.service";
 import { Attraction } from "../../modals/attractions.modal";
 import { AttractionsIconMapper } from "./atraction-icon-mapper";
-import { MapConfig } from "../../../ui-kit/components/map/map.modals";
+import { MapConfig } from "../../../ui-kit/components/map/src/map.modal";
 
 @Component({
   selector: 'app-attractions-view',
