@@ -1,10 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppBarComponent } from './app-bar.component';
-import { AppBarModule } from "./app-bar.module";
-import { AuthService } from "../../services/auth/auth.service";
-import { By } from "@angular/platform-browser";
-import { MenuItem } from "primeng/api";
-import { ActivatedRoute } from "@angular/router";
+import { AppBarModule } from './app-bar.module';
+import { AuthService } from '../../services/auth/auth.service';
+import { By } from '@angular/platform-browser';
+import { MenuItem } from 'primeng/api';
+import { ActivatedRoute } from '@angular/router';
 
 describe('AppBarComponent', () => {
   let component: AppBarComponent;
@@ -37,7 +37,8 @@ describe('AppBarComponent', () => {
     component.items = menuItems;
     fixture.detectChanges();
 
-    const menuItemsElements = fixture.nativeElement.querySelectorAll('.p-menuitem');
+    const menuItemsElements =
+      fixture.nativeElement.querySelectorAll('.p-menuitem');
     expect(menuItemsElements.length).toBe(menuItems.length);
 
     menuItems.forEach((menuItem, index) => {
@@ -49,33 +50,50 @@ describe('AppBarComponent', () => {
     authService.currentUser$.next(null);
     fixture.detectChanges();
 
-    const loginButton = fixture.debugElement.query(By.css('.p-button-label')).nativeElement;
+    const loginButton = fixture.debugElement.query(
+      By.css('.p-button-label')
+    ).nativeElement;
     expect(loginButton.textContent.trim()).toBe('Login');
 
-    const registerButton = fixture.debugElement.queryAll(By.css('.p-button-label'))[1].nativeElement;
+    const registerButton = fixture.debugElement.queryAll(
+      By.css('.p-button-label')
+    )[1].nativeElement;
     expect(registerButton.textContent.trim()).toBe('Register');
   });
 
   it('should display user menu button when user is logged in', () => {
-    authService.currentUser$.next({ email: "", password: "", name: 'User Name' });
+    authService.currentUser$.next({
+      email: '',
+      password: '',
+      name: 'User Name'
+    });
     fixture.detectChanges();
 
-    const userMenuButton = fixture.debugElement.query(By.css('.AppBar-userMenu')).nativeElement;
+    const userMenuButton = fixture.debugElement.query(
+      By.css('.AppBar-userMenu')
+    ).nativeElement;
     expect(userMenuButton.textContent.trim()).toBe('User Name');
   });
 
   it('should call authService.logout() when "Sign Out" menu button is clicked', () => {
     spyOn(authService, 'logout');
-    authService.currentUser$.next({ email: "", password: "", name: 'Test User' });
+    authService.currentUser$.next({
+      email: '',
+      password: '',
+      name: 'Test User'
+    });
     fixture.detectChanges();
 
-    const userMenuButton = fixture.debugElement.query(By.css('.AppBar-userMenu')).nativeElement;
+    const userMenuButton = fixture.debugElement.query(
+      By.css('.AppBar-userMenu')
+    ).nativeElement;
     userMenuButton.click();
     fixture.detectChanges();
 
-    const signOutMenuItem  = fixture.debugElement.query(By.css('.pi-sign-out')).nativeElement;
+    const signOutMenuItem = fixture.debugElement.query(
+      By.css('.pi-sign-out')
+    ).nativeElement;
     signOutMenuItem.click();
     expect(authService.logout).toHaveBeenCalled();
   });
-
 });

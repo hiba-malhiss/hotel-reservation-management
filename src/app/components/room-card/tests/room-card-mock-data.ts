@@ -7,4 +7,4 @@ export const roomMockData = {
   price: 100,
   image: 'room-image.jpg',
   nextAvailableDate: '2024-01-01'
-}
+};

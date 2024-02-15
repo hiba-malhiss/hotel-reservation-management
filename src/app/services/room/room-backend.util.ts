@@ -9,7 +9,7 @@ import { getRoomsMockData } from './rooms-mock-data';
 import { Room } from '../../components/room-card/room.modal';
 import * as moment from 'moment';
 
-export const DATE_FORMAT = "YYYY-MM-DD";
+export const DATE_FORMAT = 'YYYY-MM-DD';
 
 export function getHotelRoomsWithFilterAndSort(
   page: number,
@@ -60,7 +60,7 @@ export function getHotelRoomsWithFilterAndSort(
 }
 
 function getRoomNextAvailableDate(room: Room): string | null {
-  let availableDates = getRoomAvailabilityDates(room)
+  let availableDates = getRoomAvailabilityDates(room);
   const minDate = moment.min(availableDates);
   return availableDates.length ? minDate.format(DATE_FORMAT) : null;
 }
@@ -71,7 +71,9 @@ export function getHotelRoomsWithId(id: number): Room | null {
   if (room) {
     room.availableDates = getRoomAvailabilityDates(room);
     const minDate = moment.min(room.availableDates);
-    room.nextAvailableDate = room.availableDates.length ? minDate.format(DATE_FORMAT) : null;
+    room.nextAvailableDate = room.availableDates.length
+      ? minDate.format(DATE_FORMAT)
+      : null;
   }
   return room || null;
 }
@@ -89,8 +91,8 @@ export function getRoomAvailabilityDates(room: Room): moment.Moment[] {
   );
 
   return availabilityDates
-  .filter(date => !reservationDates.includes(date))
-  .map(date => moment(date));
+    .filter(date => !reservationDates.includes(date))
+    .map(date => moment(date));
 }
 
 function getRangeDatesArray(

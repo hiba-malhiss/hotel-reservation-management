@@ -11,7 +11,8 @@ import {
   deleteRoomsReservations
 } from '../room/rooms-mock-data';
 import {
-  checkIfValidReservation, DATE_FORMAT,
+  checkIfValidReservation,
+  DATE_FORMAT,
   getUserReservations
 } from '../room/room-backend.util';
 import { Room } from '../../components/room-card/room.modal';
