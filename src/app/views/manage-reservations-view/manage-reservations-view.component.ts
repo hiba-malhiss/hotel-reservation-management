@@ -64,7 +64,8 @@ export class ManageReservationsViewComponent implements OnInit {
 
   onCancelReservation(userReservation: UserReservation) {
     this.confirmationService.confirm({
-      message: 'Are you sure that you want to cancel?',
+      message:
+        'Are you sure you want to cancel this reservation? This action cannot be undone.',
       accept: () => {
         this.isLoadingReservations = true;
         this.reserveService

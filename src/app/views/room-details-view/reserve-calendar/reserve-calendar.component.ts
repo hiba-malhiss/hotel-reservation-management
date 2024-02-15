@@ -74,7 +74,7 @@ export class ReserveCalendarComponent
 
     this.minEnabledDate = minEnabled.toDate();
     this.maxEnabledDate = maxEnabled.toDate();
-    //workaround: the calendar causes the page to scroll into the calendar view when we set the defaultValue
+    // workaround: the calendar causes the page to scroll into the calendar view when we set the defaultValue
     // so prevent scrolling then enables it after setting the defaultValue by 1sec
     setTimeout(() => {
       this.disableScroll = false;

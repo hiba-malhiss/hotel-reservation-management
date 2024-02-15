@@ -53,13 +53,13 @@ export class LoginComponent extends SubscriptionManagerComponent {
   onSubmit() {
     if (this.loginForm.valid) {
       this.authService
-        .login(this.loginForm.value.email, this.loginForm.value.password)
+        .login(this.loginForm.value.email.trim(), this.loginForm.value.password)
         .pipe(
           catchError(error => {
             this.messageService.add({
               severity: 'error',
               summary: 'Error',
-              detail: "User doesn't exist"
+              detail: error
             });
             throw error;
           })

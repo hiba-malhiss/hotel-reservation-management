@@ -55,8 +55,8 @@ export class SignupComponent extends SubscriptionManagerComponent {
     if (this.signupForm.valid) {
       this.authService
         .register(
-          this.signupForm.value.name,
-          this.signupForm.value.email,
+          this.signupForm.value.name.trim(),
+          this.signupForm.value.email.trim(),
           this.signupForm.value.password
         )
         .pipe(
@@ -64,7 +64,7 @@ export class SignupComponent extends SubscriptionManagerComponent {
             this.messageService.add({
               severity: 'error',
               summary: 'Error',
-              detail: 'Email/Name already exist'
+              detail: error
             });
             throw error;
           })

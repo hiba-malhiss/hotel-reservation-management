@@ -84,8 +84,8 @@ export class RoomDetailsViewComponent
           this.isReservingRoom = false;
           this.messageService.add({
             severity: 'success',
-            summary: 'Reserves Successfully!',
-            detail: 'Your reserve-management is completed!'
+            summary: 'Reservation Confirmed!',
+            detail: 'Enjoy your stay!'
           });
           this.router.navigateByUrl('/reservations');
         });

@@ -50,8 +50,9 @@ export class AuthService {
     const list = users ? JSON.parse(users) : [];
     return new Observable(observer => {
       const user = list.find((u: User) => u.email === email);
-      if (user && bcrypt.compareSync(password, user.password)) {
-        console.log(list, user);
+      if (!user) {
+        observer.error("User doesn't exist");
+      } else if (user && bcrypt.compareSync(password, user.password)) {
         this.currentUser$.next(user);
         localStorage.setItem(USER_KEY, JSON.stringify(user));
         observer.next(user);
@@ -88,7 +89,7 @@ export class AuthService {
       );
       if (emailExist) {
         return new Observable(observer => {
-          observer.error('Email already exists');
+          observer.error('Email or Name already exists');
           observer.complete();
         });
       }
