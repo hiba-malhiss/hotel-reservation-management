@@ -1,10 +1,10 @@
 <div class="RoomView">
+  <hrm-spinner-overlay [isLoading]="isLoadingRooms"></hrm-spinner-overlay>
   <hrm-room-filters-sidebar (onFilterOrSortChange)="filters$.next($event)">
   </hrm-room-filters-sidebar>
 
   <hrm-flexbox direction="vertical" spacing="small" style="width: 100%" [fullHeight]="true" [fullWidth]="true">
     <div class="RoomView-content">
-      <p-progressSpinner *ngIf="isLoadingRooms" class="RoomView-loader"></p-progressSpinner>
       <div *ngIf="!isLoadingRooms && !rooms.length" class="RoomView-notFoundMsg">No Rooms found</div>
       <ng-container *ngIf="!isLoadingRooms">
         <hrm-room-card *ngFor="let room of rooms" [room]="room"></hrm-room-card>

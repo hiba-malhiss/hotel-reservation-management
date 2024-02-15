@@ -4,8 +4,8 @@ import { RoomsViewComponent } from "./rooms-view.component";
 import { RoomCardModule } from "../../components/room-card/room-card.module";
 import { FlexboxModule } from "../../../ui-kit/components/flexbox/src/flexbox.module";
 import { PaginatorModule } from "primeng/paginator";
-import { ProgressSpinnerModule } from "primeng/progressspinner";
 import { RoomFiltersSidebarModule } from "./room-filters-sidebar/room-filters-sidebar.module";
+import { SpinnerOverlayModule } from "../../../ui-kit/components/spinner-overlay/src/spinner-overlay.module";
 
 @NgModule({
   declarations: [RoomsViewComponent],
@@ -14,8 +14,8 @@ import { RoomFiltersSidebarModule } from "./room-filters-sidebar/room-filters-si
     RoomCardModule,
     FlexboxModule,
     PaginatorModule,
-    ProgressSpinnerModule,
-    RoomFiltersSidebarModule
+    RoomFiltersSidebarModule,
+    SpinnerOverlayModule
   ],
   exports: [
     RoomsViewComponent

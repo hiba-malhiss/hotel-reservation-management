@@ -62,7 +62,7 @@ export class ReserveManagementService {
 
       return this.reserveRoom(payload)
     } else {
-      return throwError("Invalid response")
+      return throwError("Invalid response");
     }
   }
 
@@ -77,7 +77,7 @@ export class ReserveManagementService {
           observer.error("");
           observer.complete();
         }
-      }, 500);
+      }, 800);
     })
   }
 

@@ -1,5 +1,5 @@
-<hrm-spinner-overlay [isLoading]="isLoadingRoomDetails" ></hrm-spinner-overlay>
 <hrm-flexbox direction="vertical" spacing="small" class="RoomDetailsView">
+  <hrm-spinner-overlay [isLoading]="isLoadingRoomDetails || isReservingRoom"></hrm-spinner-overlay>
   <div class="RoomDetailsView-title">Room {{room?.roomNumber}}</div>
   <div class="RoomDetailsView-img">
     <div [ngStyle]="{'background-image': 'url(' + room?.image + ')'}"></div>
