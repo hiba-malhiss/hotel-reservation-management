@@ -62,6 +62,7 @@ export class ReserveManagementService {
 
       return this.reserveRoom(payload)
     } else {
+      // deprecated no replacement, we need to throw inside observable
       return throwError("Invalid response");
     }
   }

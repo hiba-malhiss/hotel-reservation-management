@@ -2,6 +2,7 @@ import { Component, ElementRef, Input, OnChanges, ViewChild } from '@angular/cor
 // @ts-ignore
 import * as mapboxgl from 'mapbox-gl';
 import { MapConfig, MapStyles, MarkerOptions } from "./map.modal";
+import { environment } from "../../../../environments/environment";
 
 @Component({
   selector: 'hrm-map',
@@ -20,8 +21,7 @@ export class MapComponent implements OnChanges {
   }
 
   private setupMap(): void {
-    // todo: move
-    mapboxgl.accessToken = 'pk.eyJ1IjoiZHBpZXRyb2NhcmxvIiwiYSI6ImNram9tOGFuMTBvb3oyeXFsdW5uYmJjNGQifQ._zE6Mub0-Vpl7ggMj8xSUQ';
+    mapboxgl.accessToken = environment.mapboxglToken;
     const map = new mapboxgl.Map({
       container: 'map', // container ID
       style: this.mapConfig?.style
