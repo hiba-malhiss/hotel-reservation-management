@@ -39,7 +39,6 @@ export interface UserReservationResponse {
 }
 
 export const AmenitiesIconMapper: { [key: string]: string } = {
-  Wifi: 'fas fa-wifi',
   Kitchen: 'fas fa-utensils',
   'Mini Bar': 'fas fa-glass-martini-alt',
   'Air Conditioning': 'fas fa-snowflake',

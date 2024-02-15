@@ -9,7 +9,6 @@ const roomsMockData = {
       type: 'Standard',
       price: 120,
       amenities: [
-        'Wifi',
         'Kitchen',
         'Mini Bar',
         'Air Conditioning',
@@ -251,7 +250,6 @@ export function deleteRoomsReservations(reservationId: number) {
 export const roomsFilterMetaMockData = {
   roomTypes: ['Standard', 'Deluxe'],
   amenities: [
-    'Wifi',
     'Kitchen',
     'Mini Bar',
     'Air Conditioning',
