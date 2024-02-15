@@ -15,7 +15,8 @@ export class RoomsViewComponent implements OnInit {
   currentPage = 1;
   rooms: Room[] = [];
   isLoadingRooms = false;
-  filters = new BehaviorSubject({});
+  filters$ = new BehaviorSubject({});
+  firstPageChange: boolean = true;
 
   @ViewChild(Paginator)
   paginator?: Paginator;
@@ -24,10 +25,9 @@ export class RoomsViewComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.filters.subscribe(() => {
+    this.filters$.subscribe(() => {
       if (this.paginator) {
         // reset pagination on filter change
-        // resting the pagination will trigger fetch
         this.paginator.changePage(0);
       } else {
         this.fetchRooms();
@@ -37,7 +37,7 @@ export class RoomsViewComponent implements OnInit {
 
   fetchRooms() {
     this.isLoadingRooms = true;
-    this.roomsService.getHotelRooms(this.currentPage, this.rowsPerPage, this.filters.value).then((data) => {
+    this.roomsService.getHotelRooms(this.currentPage, this.rowsPerPage, this.filters$.value).then((data) => {
       this.rooms = data.rooms;
       this.totalRooms = data.totalRecords;
       this.isLoadingRooms = false;
@@ -48,9 +48,12 @@ export class RoomsViewComponent implements OnInit {
   }
 
   onPaginationChange(event: any) {
-    // skip first fetch, to prevent double fetching
-    if(this.currentPage === event.page + 1) return;
-    this.currentPage = event.page + 1;
-    this.fetchRooms();
+    // skip first data fetch, to prevent double fetching
+    if (this.firstPageChange) {
+      this.firstPageChange = false;
+    } else {
+      this.currentPage = event.page + 1;
+      this.fetchRooms();
+    }
   }
 }
