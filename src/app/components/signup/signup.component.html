@@ -36,7 +36,7 @@
                [ngClass]="{'p-invalid': signupForm.get('password')?.invalid && signupForm.get('password')?.touched}"
         />
       </hrm-field-wrapper>
-      <button (click)="onSubmit()" pButton [disabled]="!signupForm.valid">Sign Up</button>
+      <button (click)="onSubmit()" pButton [disabled]="!signupForm.valid" label="Sign Up"></button>
       <div>Or log in: <span class="Signup-login" (click)="onLogin()">here</span></div>
     </div>
   </ng-template>

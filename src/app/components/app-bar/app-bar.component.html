@@ -1,24 +1,31 @@
-<hrm-flexbox spacing="small" class="AppBar">
-  <img src="assets/images/logo.svg" alt="Logo" class="AppBar-logo">
+<p-menubar [model]="items" class="AppBar">
+  <ng-template pTemplate="start">
+    <img src="assets/images/logo.svg" alt="Logo" class="AppBar-logo">
+  </ng-template>
+  <ng-template pTemplate="end">
+    <hrm-flexbox spacing="small" class="AppBar">
+      <ng-container *ngFor="let item of barButtons">
+        <button
+              *ngIf="!(item.shouldHide && item.shouldHide())"
+              pButton type="button"
+              [icon]="item.icon || ''"
+              [label]="item.label"
+              (click)="item.onClick()"
+              [ngClass]="[item.class ||'', 'p-button-secondary', 'p-button-text']"></button>
+      </ng-container>
 
-  <ng-container *ngFor="let item of items">
-    <button
-          *ngIf="!(item.shouldHide && item.shouldHide())"
-          pButton type="button"
-          [icon]="item.icon || ''"
-          [label]="item.label"
-          (click)="item.onClick()"
-          [ngClass]="[item.class ||'', 'p-button-secondary', 'p-button-text']"></button>
-  </ng-container>
+      <ng-container *ngIf="isLoggedIn">
+        <button pButton type="button"
+                (click)="menu.toggle($event)"
+                icon="pi pi-user"
+                [label]="currentUser?.name || 'User'"
+                class="p-button-secondary p-button-text AppBar-rightBtn">
+        </button>
+        <p-menu #menu [popup]="true" [model]="userMenuItems"></p-menu>
+      </ng-container>
+    </hrm-flexbox>
+  </ng-template>
 
-  <ng-container *ngIf="isLoggedIn">
-    <button pButton type="button"
-            (click)="menu.toggle($event)"
-            icon="pi pi-user"
-            [label]="currentUser?.name || 'User'"
-            class="p-button-secondary p-button-text AppBar-rightBtn"></button>
-    <p-menu #menu [popup]="true" [model]="userMenuItems"></p-menu>
-  </ng-container>
-</hrm-flexbox>
+</p-menubar>
 <hrm-signup [isVisible]="!!(authService.isSignUpVisible$ | async)"></hrm-signup>
 <hrm-login [isVisible]="!!(authService.isLoginVisible$ | async)"></hrm-login>

@@ -7,6 +7,7 @@ import { MenuModule } from "primeng/menu";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { SignupModule } from "../signup/signup.module";
 import { LoginModule } from "../login/login.module";
+import { MenubarModule } from "primeng/menubar";
 
 @NgModule({
   declarations: [AppBarComponent],
@@ -20,7 +21,8 @@ import { LoginModule } from "../login/login.module";
     BrowserAnimationsModule,
     MenuModule,
     SignupModule,
-    LoginModule
+    LoginModule,
+    MenubarModule
   ]
 })
 export class AppBarModule { }
