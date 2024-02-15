@@ -32,7 +32,7 @@
           (click)="menu.toggle($event)"
           icon="pi pi-user"
           [label]="currentUser?.name || 'User'"
-          class="p-button-secondary p-button-text AppBar-rightBtn"
+          class="p-button-secondary p-button-text AppBar-userMenu"
         ></button>
         <p-menu #menu [popup]="true" [model]="userMenuItems"></p-menu>
       </ng-container>
