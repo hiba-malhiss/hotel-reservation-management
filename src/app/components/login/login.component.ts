@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
 import { DialogService } from "primeng/dynamicdialog";
 import { MessageService } from "primeng/api";
-import { AuthService } from "../../services/auth.service";
+import { AuthService } from "../../services/auth/auth.service";
 import { catchError, takeUntil } from "rxjs";
 import { SubscriptionManagerComponent } from "../subscription-manager/subscription-manager.component";
 

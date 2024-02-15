@@ -1,5 +1,5 @@
 import { Component, HostListener, Input, OnInit, ViewChild } from '@angular/core';
-import { ReserveManagementService } from "../../../services/reserve-management.service";
+import { ReserveManagementService } from "../../../services/reserve-management/reserve-management.service";
 import * as moment from "moment";
 import { Room } from "../../../components/room-card/room.modal";
 import { Calendar } from 'primeng/calendar';

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { getAttractionsMockData } from "./attractions-mock-data";
-import { Attraction } from "../modals/attractions.modal";
+import { Attraction } from "../../modals/attractions.modal";
 
 @Injectable({
   providedIn: 'root'

@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Room } from "../../components/room-card/room.modal";
-import { RoomsService } from "../../services/rooms.service";
+import { RoomsService } from "../../services/room/rooms.service";
 import { BehaviorSubject, takeUntil } from "rxjs";
 import { Paginator } from "primeng/paginator";
 import { SubscriptionManagerComponent } from "../../components/subscription-manager/subscription-manager.component";

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 // @ts-ignore
 import * as bcrypt from 'bcryptjs';
-import { capitalizeFirstLetter } from "../../ui-kit/utils/string-utils";
+import { capitalizeFirstLetter } from "../../../ui-kit/utils/string-utils";
 
 export interface User {
   name: string;

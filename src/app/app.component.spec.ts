@@ -23,13 +23,13 @@ describe('AppComponent', () => {
   it(`should have as title 'hotel-reservation-management'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('hotel-reservation-management');
+    expect(app.title).toEqual('hotel-reserve-management-management');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('hotel-reservation-management app is running!');
+    expect(compiled.querySelector('.content span')?.textContent).toContain('hotel-reserve-management-management app is running!');
   });
 });

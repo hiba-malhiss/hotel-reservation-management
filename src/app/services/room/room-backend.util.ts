@@ -1,6 +1,6 @@
-import { FilterAndSortPayload, RoomsData, Reservation } from "../modals/roomsData.modal";
+import { FilterAndSortPayload, RoomsData, Reservation } from "../../modals/roomsData.modal";
 import { getRoomsMockData } from "./rooms-mock-data";
-import { Room } from "../components/room-card/room.modal";
+import { Room } from "../../components/room-card/room.modal";
 import * as moment from "moment";
 
 export function getHotelRoomsWithFilterAndSort(page: number, pageSize: number, filters: FilterAndSortPayload): RoomsData {

@@ -1,11 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from "@angular/router";
-import { RoomsService } from "../../services/rooms.service";
+import { RoomsService } from "../../services/room/rooms.service";
 import { Room } from "../../components/room-card/room.modal";
 import { BehaviorSubject, catchError, combineLatest, switchMap, takeUntil, tap } from "rxjs";
 import { AmenitiesIconMapper } from "../../modals/roomsData.modal";
-import { ReserveManagementService } from "../../services/reserve-management.service";
-import { AuthService } from "../../services/auth.service";
+import { ReserveManagementService } from "../../services/reserve-management/reserve-management.service";
+import { AuthService } from "../../services/auth/auth.service";
 import { MessageService } from "primeng/api";
 import { SubscriptionManagerComponent } from "../../components/subscription-manager/subscription-manager.component";
 
@@ -66,7 +66,7 @@ export class RoomDetailsViewComponent extends SubscriptionManagerComponent imple
         this.messageService.add({
           severity: 'success',
           summary: 'Reserves Successfully!',
-          detail: "Your reservation is completed!"
+          detail: "Your reserve-management is completed!"
         });
         this.router.navigateByUrl("/") //todo: navigate to bookings page
       });

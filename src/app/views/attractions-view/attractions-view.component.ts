@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AttractionsService } from "../../services/attractions.service";
+import { AttractionsService } from "../../services/attractions/attractions.service";
 import { Attraction } from "../../modals/attractions.modal";
 import { AttractionsIconMapper } from "./atraction-icon-mapper";
 import { MapConfig } from "../../../ui-kit/components/map/src/map.modal";

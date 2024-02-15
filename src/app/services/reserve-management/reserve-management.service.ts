@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Room } from "../components/room-card/room.modal";
 import * as moment from "moment";
 import { BehaviorSubject, Observable, throwError } from "rxjs";
-import { AuthService } from "./auth.service";
-import { Reservation } from "../modals/roomsData.modal";
-import { addRoomsReservations } from "./rooms-mock-data";
-import { checkIfValidReservation } from "./room-backend.util";
+import { AuthService } from "../auth/auth.service";
+import { Reservation } from "../../modals/roomsData.modal";
+import { addRoomsReservations } from "../room/rooms-mock-data";
+import { checkIfValidReservation } from "../room/room-backend.util";
+import { Room } from "../../components/room-card/room.modal";
 
 @Injectable({
   providedIn: 'root'

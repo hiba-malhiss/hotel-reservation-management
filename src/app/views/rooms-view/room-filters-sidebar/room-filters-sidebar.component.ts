@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { RoomsService } from "../../../services/rooms.service";
+import { RoomsService } from "../../../services/room/rooms.service";
 import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
 import { FilterAndSortPayload, RoomsFiltersMetaData } from "../../../modals/roomsData.modal";
 import { debounceTime, takeUntil } from "rxjs";

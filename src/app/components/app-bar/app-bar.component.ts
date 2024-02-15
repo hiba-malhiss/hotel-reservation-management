@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { MenuItem } from 'primeng/api';
-import { AuthService, User } from "../../services/auth.service";
+import { AuthService, User } from "../../services/auth/auth.service";
 import { SubscriptionManagerComponent } from "../subscription-manager/subscription-manager.component";
 import { takeUntil } from "rxjs";
 

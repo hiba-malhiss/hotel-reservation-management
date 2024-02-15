@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { ReserveManagementService } from "../../../services/reserve-management.service";
+import { ReserveManagementService } from "../../../services/reserve-management/reserve-management.service";
 
 @Component({
   selector: 'hrm-reserve-card',

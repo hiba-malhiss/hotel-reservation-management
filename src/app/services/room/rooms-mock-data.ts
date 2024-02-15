@@ -1,4 +1,4 @@
-import { Reservation } from "../modals/roomsData.modal";
+import { Reservation } from "../../modals/roomsData.modal";
 
 const roomsMockData = {
   "rooms": [

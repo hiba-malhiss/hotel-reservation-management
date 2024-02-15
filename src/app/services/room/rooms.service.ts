@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { roomsFilterMetaMockData } from "./rooms-mock-data";
-import { FilterAndSortPayload, RoomsData, RoomsFiltersMetaData } from "../modals/roomsData.modal";
+import { FilterAndSortPayload, RoomsData, RoomsFiltersMetaData } from "../../modals/roomsData.modal";
 import { getHotelRoomsWithFilterAndSort, getHotelRoomsWithId } from "./room-backend.util";
-import { Room } from "../components/room-card/room.modal";
+import { Room } from "../../components/room-card/room.modal";
 
 @Injectable({
   providedIn: 'root'
