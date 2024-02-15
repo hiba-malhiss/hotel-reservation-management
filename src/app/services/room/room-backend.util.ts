@@ -45,12 +45,28 @@ export function getHotelRoomsWithFilterAndSort(
   // Handle pagination
   const startIndex = (page - 1) * pageSize;
   const endIndex = startIndex + pageSize;
-  const paginatedRooms = sortedRooms.slice(startIndex, endIndex);
+  let paginatedRooms = sortedRooms.slice(startIndex, endIndex);
+  paginatedRooms = paginatedRooms.map(room => ({
+    ...room,
+    nextAvailableDate: getRoomNextAvailableDate(room)
+  }));
 
   return {
     rooms: paginatedRooms as Room[],
     totalRecords: sortedRooms.length
   };
+}
+
+function getRoomNextAvailableDate(room: Room): string | null {
+  const reservations = getRoomsMockData().reservations.filter(
+    (res: Reservation) => res.roomId === room.id
+  );
+  const dates = getRangeDatesArray(room.availability);
+  const reservedDates = getRangeDatesArray(reservations);
+  for (let i = 0; i < dates.length; i++) {
+    if (!reservedDates.includes(dates[i])) return dates[i];
+  }
+  return null;
 }
 
 export function getHotelRoomsWithId(id: number): Room | null {

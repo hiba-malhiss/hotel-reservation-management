@@ -7,6 +7,14 @@
   <ng-template pTemplate="header">
     <img [src]="room.image" alt="room" class="RoomCard-img" />
   </ng-template>
+  <ng-template pTemplate="content">
+    <div *ngIf="room.nextAvailableDate" class="RoomCard-available">
+      Available at: {{ room.nextAvailableDate }}
+    </div>
+    <div *ngIf="!room.nextAvailableDate" class="RoomCard-notAvail">
+      Room is fully booked
+    </div>
+  </ng-template>
   <ng-template pTemplate="footer">
     <hrm-flexbox align="center">
       <span class="RoomCard-price">${{ room.price }}</span>

@@ -9,4 +9,5 @@ export interface Room {
   image: string;
   availability: { startDate: string; endDate: string }[];
   availableDates?: moment.Moment[];
+  nextAvailableDate?: moment.Moment[];
 }
