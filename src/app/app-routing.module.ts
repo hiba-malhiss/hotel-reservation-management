@@ -31,7 +31,8 @@ const routes: Routes = [
   {
     path: 'reservations',
     component: ManageReservationsViewComponent
-  }
+  },
+  { path: '**', redirectTo: '/home' }
 ];
 
 @NgModule({
