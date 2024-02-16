@@ -40,3 +40,8 @@ Run `ng serve` for a development server. Navigate to `http://localhost:4200/` in
 ### Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+
+# SUIT CSS Naming Convention
+
+In this project, we follow the SUIT CSS naming convention to ensure consistency and maintainability in our codebase.
+https://github.com/suitcss/suit/blob/master/doc/naming-conventions.md
