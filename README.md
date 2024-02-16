@@ -43,5 +43,5 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 # SUIT CSS Naming Convention
 
-In this project, we follow the SUIT CSS naming convention to ensure consistency and maintainability in our codebase.
+This project follows the SUIT CSS naming convention to ensure consistency in the codebase.
 https://github.com/suitcss/suit/blob/master/doc/naming-conventions.md
