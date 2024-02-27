@@ -22,10 +22,8 @@ export class ReserveCalendarComponent
   implements OnInit
 {
   disabledDates: Date[] = [];
-  // @ts-ignore
-  minEnabledDate: Date;
-  // @ts-ignore
-  maxEnabledDate: Date;
+  minEnabledDate!: Date;
+  maxEnabledDate!: Date;
 
   disableScroll: boolean = true;
 
@@ -65,6 +63,7 @@ export class ReserveCalendarComponent
 
     this.disabledDates = [];
     while (start.isBefore(end, 'day')) {
+      // obj pass by ref
       let date = start.clone();
       if (!isEnabledDate(date)) {
         this.disabledDates.push(date.toDate());
@@ -93,6 +92,7 @@ export class ReserveCalendarComponent
           moment(disabledDate).isSame(date, 'day')
         );
 
+      // end date selected can't be disabled
       while (selectedStartDate.isBefore(selectedEndDate, 'day')) {
         let date = selectedStartDate.clone();
         if (isDisabledDates(date)) {
@@ -101,6 +101,7 @@ export class ReserveCalendarComponent
         }
         selectedStartDate.add(1, 'day');
       }
+      // behavioral subject + subscribe
       this.reserveService.onReservationDatesSelect();
       this.calendar?.hideOverlay();
     }

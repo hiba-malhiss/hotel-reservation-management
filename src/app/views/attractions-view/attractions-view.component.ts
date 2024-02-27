@@ -45,6 +45,8 @@ export class AttractionsViewComponent implements OnInit {
       });
   }
 
+  // create a marker component in the map component and let parent passes appearance
+  // move this logic to the map component
   getAttractionsMarkerElement(attractionName: string) {
     const icon = AttractionsIconMapper[attractionName.toLowerCase()];
     const markerElement = document.createElement('div');

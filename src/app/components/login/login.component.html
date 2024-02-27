@@ -11,6 +11,8 @@
     <div class="Login-content">
       <div class="Login-welcome">Welcome to Hilton Hotel</div>
       <hrm-field-wrapper label="Email" [control]="getControl('email')">
+<!-- container input with hasError instead of ngClass-->
+<!-- [class.p-invalid]="this.hasError || (!control?.valid && control?.touched)"-->
         <input
           id="Email"
           type="text"

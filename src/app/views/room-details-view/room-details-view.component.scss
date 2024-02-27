@@ -1,13 +1,9 @@
 @import "../../../ui-kit/styling/constants";
 
 .RoomDetailsView {
-  padding: 40px 5%;
   display: block;
   position: relative;
-
-  @media screen and (min-width: 1500px) {
-    padding: 40px 12%;
-  }
+  padding: var(--var-content-padding);
 
   &-title {
     font-size: 34px;

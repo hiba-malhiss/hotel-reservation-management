@@ -7,6 +7,15 @@ import { ValidationErrorMessages } from './validation-error-messages';
   templateUrl: './field-wrapper.component.html',
   styleUrls: ['./field-wrapper.component.scss']
 })
+//change to like custom input using ControlValueAccessor,
+// providers: [
+//   {
+//     provide: NG_VALUE_ACCESSOR,
+//     useExisting: forwardRef(() => FieldWrapperComponent),
+//     multi: true
+//   }
+// ]
+// inject controller from injector
 export class FieldWrapperComponent implements OnInit {
   @Input()
   control!: FormControl;
@@ -18,6 +27,7 @@ export class FieldWrapperComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  // change to pipe: message => control?.errors | errorString
   getErrorMessage(): string {
     if (this.control.errors) {
       const errorKey: string = Object.keys(this.control.errors)[0];

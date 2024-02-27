@@ -38,6 +38,7 @@ export interface UserReservationResponse {
   userReservations: UserReservation[];
 }
 
+// move to config file or AmenitiesIconMapper.ts file
 export const AmenitiesIconMapper: { [key: string]: string } = {
   Kitchen: 'fas fa-utensils',
   'Mini Bar': 'fas fa-glass-martini-alt',

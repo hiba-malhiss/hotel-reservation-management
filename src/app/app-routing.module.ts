@@ -30,7 +30,8 @@ const routes: Routes = [
   },
   {
     path: 'reservations',
-    component: ManageReservationsViewComponent
+    component: ManageReservationsViewComponent,
+    // canActivate: [AuthGuard], // redirect to home if not logged in
   },
   { path: '**', redirectTo: '/home' }
 ];

@@ -74,6 +74,7 @@ export class AuthService {
     email: string,
     password: string
   ): Observable<User> {
+    // perform on BE to not expose hash algo
     const passwordHash = bcrypt.hashSync(password, 10);
     const user: User = {
       name: capitalizeFirstLetter(name),
