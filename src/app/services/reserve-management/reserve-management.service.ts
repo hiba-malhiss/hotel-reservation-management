@@ -8,7 +8,9 @@ import {
 } from '../../modals/roomsData.modal';
 import {
   addRoomsReservations,
-  deleteRoomsReservations
+  deleteRoomsReservations,
+  DiscountConfigs,
+  VipList
 } from '../room/rooms-mock-data';
 import {
   checkIfValidReservation,
@@ -25,6 +27,8 @@ export class ReserveManagementService {
   selectedRoom$ = new BehaviorSubject<Room | null>(null);
   numberOfDays?: number;
   totalCost?: number;
+  discountsConfigs: any;
+  newPriceAfterDiscount?: number;
 
   constructor(private authService: AuthService) {}
 
@@ -37,10 +41,21 @@ export class ReserveManagementService {
     this.selectedReservationDate = null;
     this.numberOfDays = 0;
     this.totalCost = 0;
+    this.newPriceAfterDiscount = 0;
   }
 
   get selectedRoom() {
     return this.selectedRoom$.value;
+  }
+
+
+  fetchDiscountConfigs() {
+    return new Observable((observer) => {
+      setTimeout(() => {
+        observer.next({ vipList: VipList, discountConfigs: DiscountConfigs })
+        observer.complete();
+      }, 300)
+    })
   }
 
   onReservationDatesSelect() {
@@ -54,6 +69,19 @@ export class ReserveManagementService {
 
     // use big decimal for fractions
     this.totalCost = this.numberOfDays * this.selectedRoom$.value!.price;
+
+    // calc discount
+    if (this.discountsConfigs &&
+      this.discountsConfigs.vipList?.includes(this.authService.currentUser$.value?.name)) {
+      this.discountsConfigs.discountConfigs?.forEach((config: any) => {
+        if (config.numOfDays && this.totalCost && this.numberOfDays == config.numOfDays) {
+          this.newPriceAfterDiscount = this.totalCost * config.discount;
+        }
+        if (config.moreThan && this.numberOfDays && this.numberOfDays > config.moreThan) {
+          this.newPriceAfterDiscount = this.totalCost! * config.discount;
+        }
+      })
+    }
   }
 
   onReserveRoom(): Observable<boolean> {

@@ -1,8 +1,15 @@
 <p-card class="ReserveCard">
   <hrm-flexbox spacing="medium" direction="vertical">
-    <span class="ReserveCard-price">
-      ${{ reserveService.selectedRoom?.price }} night
-    </span>
+    <hrm-flexbox spacing="small" class="ReserveCard-price">
+      <span [ngClass]="{'ReserveCard-oldPrice': reserveService.newPriceAfterDiscount}">
+        ${{ reserveService.selectedRoom?.price }} night
+      </span>
+
+       <span *ngIf="reserveService.newPriceAfterDiscount">
+        ${{ reserveService.newPriceAfterDiscount }} night
+      </span>
+    </hrm-flexbox>
+
     <span>Select check-in, check-out dates</span>
     <div>
       <hrm-reserve-calendar [fullWidth]="true"></hrm-reserve-calendar>

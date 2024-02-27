@@ -46,6 +46,10 @@ export class ReserveCalendarComponent
       .subscribe(room => {
         this.setDisabledDates(room);
       });
+
+    this.reserveService.fetchDiscountConfigs().subscribe((data) => {
+      this.reserveService.discountsConfigs = data
+    })
   }
 
   // p-calender doesn't accept enabled dates it only accept disabled dates

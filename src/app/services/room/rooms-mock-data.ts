@@ -219,6 +219,19 @@ const roomsMockData = {
   ]
 };
 
+export const VipList = ['Hiba'];
+
+export const DiscountConfigs = [
+  {
+    numOfDays: 3,
+    discount: 0.02
+  },
+  {
+    moreThan: 3,
+    discount: 0.03
+  }
+];
+
 const ROOMS_KEY = 'roomsList';
 
 export function getRoomsMockData() {

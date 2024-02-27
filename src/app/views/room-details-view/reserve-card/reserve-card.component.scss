@@ -17,6 +17,10 @@
     font-weight: 700;
   }
 
+  &-oldPrice{
+    text-decoration: line-through;
+  }
+
   &-details {
     display: grid;
     grid-template-columns: 1fr max-content;
